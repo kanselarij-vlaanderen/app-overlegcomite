@@ -1,0 +1,10 @@
+
+(define-resource government-body ()
+  :class (s-prefix "besluit:Bestuursorgaan")
+  :properties `((:name :string ,(s-prefix "skos:prefLabel"))
+                (:binding-end :date ,(s-prefix "mandaat:bindingEinde"))
+                (:binding-start :date ,(s-prefix "mandaat:bindingStart"))
+                (:deprecated    :boolean   ,(s-prefix "owl:deprecated")))
+  :resource-base (s-url "http://kanselarij.vo.data.gift/id/bestuursorganen/")
+  :features '(include-uri)
+  :on-path "government-bodies")

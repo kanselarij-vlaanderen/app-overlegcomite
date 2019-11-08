@@ -32,3 +32,18 @@
 ;; by them and that it shouldn't be used for permanent URIs.
 
 (add-prefix "ext" "http://mu.semte.ch/vocabularies/ext/")
+(add-prefix "oc" "http://mu.semte.ch/vocabularies/ext/oc/")
+
+(add-prefix "besluit" "http://data.vlaanderen.be/ns/besluit#")
+(add-prefix "mandaat" "http://data.vlaanderen.be/ns/mandaat#")
+
+(add-prefix "dbpedia" "http://dbpedia.org/ontology/")
+(add-prefix "dct" "http://purl.org/dc/terms/")
+(add-prefix "foaf" "http://xmlns.com/foaf/0.1/")
+(add-prefix "nfo" "http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#")
+(add-prefix "nie" "http://www.semanticdesktop.org/ontologies/2007/01/19/nie#")
+(add-prefix "nmo" "http://www.semanticdesktop.org/ontologies/2007/03/22/nmo#")
+(add-prefix "owl" "http://www.w3.org/2002/07/owl#")
+(add-prefix "person" "http://www.w3.org/ns/person#")
+(add-prefix "prov" "http://www.w3.org/ns/prov#")
+(add-prefix "skos" "http://www.w3.org/2004/02/skos/core#")
