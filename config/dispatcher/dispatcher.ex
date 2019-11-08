@@ -12,15 +12,62 @@ defmodule Dispatcher do
   plug :match
   plug :dispatch
 
-  # In order to forward the 'themes' resource to the
-  # resource service, use the following forward rule.
-  #
-  # docker-compose stop; docker-compose rm; docker-compose up
-  # after altering this file.
-  #
-  # match "/themes/*path" do
-  #   Proxy.forward conn, path, "http://resource/themes/"
-  # end
+  match "/mock/sessions/*path" do
+    Proxy.forward conn, path, "http://mocklogin/sessions/"
+  end
+  
+  match "/sessions/*path" do
+    Proxy.forward conn, path, "http://login/sessions/"
+  end
+  
+  
+  match "/users/*path" do
+    Proxy.forward conn, path, "http://cache/users/"
+  end
+
+  match "/accounts/*path" do
+    Proxy.forward conn, path, "http://cache/accounts/"
+  end
+
+  match "/account-groups/*path" do
+    Proxy.forward conn, path, "http://cache/account-groups/"
+  end
+
+
+  get "/files/:id/download" do
+    Proxy.forward conn, [], "http://file/files/" <> id <> "/download"
+  end
+
+  post "/files/*path" do
+    Proxy.forward conn, path, "http://file/files/"
+  end
+
+  delete "/files/*path" do
+    Proxy.forward conn, path, "http://file/files/"
+  end
+
+  match "/files/*path" do
+    Proxy.forward conn, path, "http://cache/files/"
+  end
+
+
+  match "/meetings/*path" do
+    Proxy.forward conn, path, "http://cache/meetings/"
+  end
+
+  match "/agendaitems/*path" do
+    Proxy.forward conn, path, "http://cache/agendaitems/"
+  end
+
+  match "/cases/*path" do
+    Proxy.forward conn, path, "http://cache/cases/"
+  end
+
+
+  match "/government-bodies/*path" do
+    Proxy.forward conn, path, "http://cache/government-bodies/"
+  end
+
 
   match _ do
     send_resp( conn, 404, "Route not found.  See config/dispatcher.ex" )
