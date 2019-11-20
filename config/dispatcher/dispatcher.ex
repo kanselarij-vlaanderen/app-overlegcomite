@@ -51,6 +51,24 @@ defmodule Dispatcher do
   end
 
 
+  match "/documents/*path" do
+    Proxy.forward conn, path, "http://cache/documents/"
+  end
+
+  match "/document-versions/*path" do
+    Proxy.forward conn, path, "http://cache/document-versions/"
+  end
+
+  match "/document-types/*path" do
+    Proxy.forward conn, path, "http://cache/document-types/"
+  end
+
+
+  match "/access-levels/*path" do
+    Proxy.forward conn, path, "http://cache/access-levels/"
+  end
+
+
   match "/meetings/*path" do
     Proxy.forward conn, path, "http://cache/meetings/"
   end

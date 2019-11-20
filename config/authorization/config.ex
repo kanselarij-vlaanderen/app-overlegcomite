@@ -22,6 +22,10 @@ defmodule Acl.UserGroups.Config do
                     constraint: %ResourceConstraint{
                       resource_types: [
                         "http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#FileDataObject",
+                        "http://xmlns.com/foaf/0.1/Document",
+                        "http://mu.semte.ch/vocabularies/ext/DocumentVersie",
+                        "http://mu.semte.ch/vocabularies/ext/DocumentTypeCode",
+                        "http://mu.semte.ch/vocabularies/ext/ToegangsniveaCode",
                         "http://data.vlaanderen.be/ns/besluit#Bestuursorgaan",
                         "http://mu.semte.ch/vocabularies/ext/oc/Meeting",
                         "http://mu.semte.ch/vocabularies/ext/oc/AgendaItem",
