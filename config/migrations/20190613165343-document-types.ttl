@@ -1,0 +1,22 @@
+@prefix type: <http://kanselarij.vo.data.gift/id/concept/document-type-codes/> .
+@prefix mu: <http://mu.semte.ch/vocabularies/core/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix ext: <http://mu.semte.ch/vocabularies/ext/> .
+
+
+type:c648aef1-baf7-4b69-aaa6-fe55f9112200 a ext:DocumentTypeCode ;
+ mu:uuid "c648aef1-baf7-4b69-aaa6-fe55f9112200" ;
+ skos:prefLabel "Agenda"@nl .
+
+type:5d945b51-aeba-4af3-b259-34a7e81d902b a ext:DocumentTypeCode ;
+ mu:uuid "5d945b51-aeba-4af3-b259-34a7e81d902b" ;
+ skos:prefLabel "Advies"@nl .
+
+type:436a37c1-ecf0-44a4-8d44-7440c4a89df6 a ext:DocumentTypeCode ;
+ mu:uuid "436a37c1-ecf0-44a4-8d44-7440c4a89df6" ;
+ skos:prefLabel "Verslag"@nl .
+
+type:ee8bb6f1-5bcb-45b5-afd3-b103ef185a2b a ext:DocumentTypeCode ;
+ mu:uuid "ee8bb6f1-5bcb-45b5-afd3-b103ef185a2b" ;
+ skos:prefLabel "Notificatie"@nl .
+ 
