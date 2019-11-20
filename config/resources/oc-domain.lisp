@@ -1,7 +1,9 @@
 (define-resource meeting ()
   :class (s-prefix "oc:Meeting")
-  :properties `((:started-at            :datetime ,(s-prefix "prov:startedAtTime"))
-                (:extra-info            :string   ,(s-prefix "ext:extraInfo")))
+  :properties `((:started-at                :datetime ,(s-prefix "prov:startedAtTime"))
+                (:agenda-release-time       :datetime ,(s-prefix "ext:agendaVrijgave"))
+                (:notification-release-time :datetime ,(s-prefix "ext:notificatieVrijgave")) ;; notification & related documents
+                (:extra-info                :string   ,(s-prefix "ext:extraInfo")))
   :has-many `((agendaitem               :via      ,(s-prefix "oc:agendaItem")
                                         :as "agenda-items")
               (document                 :via      ,(s-prefix "oc:documents")

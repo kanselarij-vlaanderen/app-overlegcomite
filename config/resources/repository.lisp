@@ -36,6 +36,7 @@
 
 (add-prefix "besluit" "http://data.vlaanderen.be/ns/besluit#")
 (add-prefix "mandaat" "http://data.vlaanderen.be/ns/mandaat#")
+(add-prefix "besluitvorming" "http://data.vlaanderen.be/ns/besluitvorming#")
 
 (add-prefix "dbpedia" "http://dbpedia.org/ontology/")
 (add-prefix "dct" "http://purl.org/dc/terms/")
