@@ -17,6 +17,7 @@
 (defparameter *no-application-graph-for-sudo-select-queries* t)
 (in-package :mu-cl-resources)
 (read-domain-file "files-domain.lisp")
+(read-domain-file "document-domain.lisp")
 (read-domain-file "mandate-domain.lisp")
 (read-domain-file "oc-domain.lisp")
 (read-domain-file "users-domain.lisp")
