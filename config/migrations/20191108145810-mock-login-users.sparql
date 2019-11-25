@@ -101,37 +101,37 @@ INSERT DATA {
 
 
     user:administratie a foaf:Person ;
-        mu:uuid "c228b8ff-bef2-4888-b403-7a1846e0d85c" ;
+        mu:uuid "fdb00c6d-7d0f-4d5d-ad7a-f752ab0c0639" ;
         foaf:firstName "Administratie" ;
         foaf:familyName "Test" ;
         dct:identifier "00.00.00-000.00" ;
         foaf:account account:administratie .
 
     account:administratie a foaf:OnlineAccount ;
-        mu:uuid "0644e559-29b8-4c3c-8e93-3f48a3d8d4ca" ;
+        mu:uuid "276732ab-af46-443d-ad7a-3613a41533a6" ;
         foaf:accountServiceHomepage "https://github.com/kanselarij-vlaanderen/mock-login-service" ;
         dct:identifier "5" .
 
     group:administratie a foaf:Group ;
-        mu:uuid "3e824494-bbe7-45cf-aed8-5828970a10dc" ;
+        mu:uuid "a22f80e0-f302-4f13-9af0-52bcf949333e" ;
         foaf:name "administratie" ;
         foaf:member user:administratie .
 
 
     user:parlement a foaf:Person ;
-        mu:uuid "c228b8ff-bef2-4888-b403-7a1846e0d85c" ;
+        mu:uuid "0f72c871-2b03-4f25-9e8b-0531350a1fa1" ;
         foaf:firstName "Vlaams Parlement" ;
         foaf:familyName "Test" ;
         dct:identifier "00.00.00-000.00" ;
         foaf:account account:parlement .
 
     account:parlement a foaf:OnlineAccount ;
-        mu:uuid "0644e559-29b8-4c3c-8e93-3f48a3d8d4ca" ;
+        mu:uuid "e468e31b-3d7f-4bc3-9dfa-24c76a7ef510" ;
         foaf:accountServiceHomepage "https://github.com/kanselarij-vlaanderen/mock-login-service" ;
         dct:identifier "6" .
 
     group:parlement a foaf:Group ;
-        mu:uuid "3e824494-bbe7-45cf-aed8-5828970a10dc" ;
+        mu:uuid "e2e9b836-6080-4c70-95ee-49e828ee2f66" ;
         foaf:name "Vlaams Parlement" ;
         foaf:member user:parlement .
 
