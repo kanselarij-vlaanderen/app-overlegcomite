@@ -6,6 +6,12 @@ x-logging:
     max-size: "10m"
     max-file: "3"
 services:
+  frontend:
+    image: kanselarij/frontend-overlegcomite:latest
+    links:
+      - identifier:backend
+    restart: always
+    logging: *default-logging
   identifier:
     image: semtech/mu-identifier:1.7.0
     logging: *default-logging
