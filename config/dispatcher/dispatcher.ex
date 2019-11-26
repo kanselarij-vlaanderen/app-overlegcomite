@@ -34,8 +34,8 @@ defmodule Dispatcher do
   end
 
 
-  get "/files/:id/download" do
-    Proxy.forward conn, [], "http://file/files/" <> id <> "/download"
+  get "/files/:id/download/*path" do
+    Proxy.forward conn, path, "http://range-file/files/" <> id <> "/download/"
   end
 
   post "/files/*path" do
