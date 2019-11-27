@@ -48,7 +48,8 @@
   :class (s-prefix "ext:ToegangsniveauCode") ;; NOTE: as well as skos:Concept
   :properties `((:label       :string ,(s-prefix "skos:prefLabel"))
                 (:scope-note  :string ,(s-prefix "skos:scopeNote"))
-                (:alt-label :string ,(s-prefix "skos:altLabel")))
+                (:alt-label   :string ,(s-prefix "skos:altLabel"))
+                (:priority    :number ,(s-prefix "ext:priority")))
   :has-many `((document-version    :via ,(s-prefix "ext:toegangsniveauVoorDocumentVersie")
                                    :inverse t
                                   :as "document-versions"))
