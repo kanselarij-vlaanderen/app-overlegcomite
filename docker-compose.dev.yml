@@ -16,6 +16,7 @@ services:
       LOG_ACCESS_RIGHTS: "true"
   login:
     entrypoint: "echo 'service disabled'"
+    restart: "no"
   mocklogin:
     image: kanselarij/mock-login-service:1.0.0
     volumes:
