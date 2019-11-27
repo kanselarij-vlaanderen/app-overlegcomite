@@ -22,6 +22,17 @@ services:
       - ./config/dispatcher:/config
     logging: *default-logging
     restart: always
+  login:
+    image: kanselarij/acmidm-login-service:1.0.2
+    environment:
+      MU_APPLICATION_AUTH_ROLE_CLAIM: "dkb_overlegcomite_rol_3d"
+      MU_APPLICATION_AUTH_USERID_CLAIM: "vo_id"
+      DEBUG_LOG_TOKENSETS: "true"
+      LOG_SINK_URL: "http://sink"
+      MU_APPLICATION_RESOURCE_BASE_URI: "http://kanselarij.vo.data.gift/"
+      REQUEST_TIMEOUT: 5000
+    logging: *default-logging
+    restart: always
   migration:
     image: semtech/mu-migrations-service:0.5.1
     volumes:

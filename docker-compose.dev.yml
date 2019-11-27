@@ -14,6 +14,8 @@ services:
       LOG_OUTGOING_SPARQL_QUERIES: "true"
       LOG_INCOMING_SPARQL_QUERIES: "true"
       LOG_ACCESS_RIGHTS: "true"
+  login:
+    entrypoint: "echo 'service disabled'"
   mocklogin:
     image: kanselarij/mock-login-service:1.0.0
     volumes:
