@@ -4,8 +4,8 @@
 @prefix ext: <http://mu.semte.ch/vocabularies/ext/> .
 
 
-type:c648aef1-baf7-4b69-aaa6-fe55f9112200 a ext:DocumentTypeCode ;
- mu:uuid "c648aef1-baf7-4b69-aaa6-fe55f9112200" ;
+type:90bf0f69-295f-4324-bed8-910c4016d895 a ext:DocumentTypeCode ;
+ mu:uuid "90bf0f69-295f-4324-bed8-910c4016d895" ;
  skos:prefLabel "Agenda"@nl .
 
 type:5d945b51-aeba-4af3-b259-34a7e81d902b a ext:DocumentTypeCode ;
@@ -19,4 +19,8 @@ type:436a37c1-ecf0-44a4-8d44-7440c4a89df6 a ext:DocumentTypeCode ;
 type:ee8bb6f1-5bcb-45b5-afd3-b103ef185a2b a ext:DocumentTypeCode ;
  mu:uuid "ee8bb6f1-5bcb-45b5-afd3-b103ef185a2b" ;
  skos:prefLabel "Notificatie"@nl .
+
+type:e149294e-a8b8-4c11-83ac-6d4c417b079b a ext:DocumentTypeCode ;
+ mu:uuid "e149294e-a8b8-4c11-83ac-6d4c417b079b" ;
+ skos:prefLabel "Notulen"@nl .
  
