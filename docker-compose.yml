@@ -94,6 +94,8 @@ services:
       - resource:backend
     restart: always
     logging: *default-logging
+  distribution:
+    image: kanselarij/oc-distributor:latest
   sink:
     image: lblod/sink-service:1.0.0
     logging: *default-logging

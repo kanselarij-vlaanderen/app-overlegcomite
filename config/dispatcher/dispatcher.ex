@@ -69,6 +69,15 @@ defmodule Dispatcher do
   end
 
 
+  match "/meetings/:id/agenda/distribute/*path" do
+    Proxy.forward conn, path, "http://distribution/meetings/" <> id <> "/agenda/distribute/"
+  end
+
+  match "/meetings/:id/notifications/distribute/*path" do
+    Proxy.forward conn, path, "http://distribution/meetings/" <> id <> "/notifications/distribute/"
+  end
+
+  
   match "/meetings/*path" do
     Proxy.forward conn, path, "http://cache/meetings/"
   end
