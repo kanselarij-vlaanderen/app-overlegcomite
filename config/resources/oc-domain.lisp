@@ -18,15 +18,14 @@
   :properties `((:priority            :number   ,(s-prefix "oc:priority"))
                 (:sub-priority        :string   ,(s-prefix "oc:subPriority"))
                 (:subject             :string   ,(s-prefix "dct:subject"))
-                (:distribution-date   :date     ,(s-prefix "oc:distributionDate")))
+                ; (:distribution-date   :date     ,(s-prefix "oc:distributionDate"))
+               )
   :has-one `((case                    :via      ,(s-prefix "oc:caseAgendaItem")
                                       :inverse t
                                       :as "case")
              (meeting                 :via      ,(s-prefix "oc:agendaItem")
                                       :inverse t
                                       :as "meeting")
-             (file                    :via      ,(s-prefix "oc:meetingRecord")
-                                      :as "meeting-record")
              (document                :via     ,(s-prefix "oc:notification")
                                       :as "notification"))
   :has-many `((government-body        :via      ,(s-prefix "oc:submitter")
