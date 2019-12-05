@@ -15,8 +15,8 @@
 (define-resource account ()
   :class (s-prefix "foaf:OnlineAccount")
   :resource-base (s-url "http://kanselarij.vo.data.gift/id/accounts/")
-  :properties `((:provider    :via ,(s-prefix "foaf:accountServiceHomepage"))
-                (:vo-id       :via ,(s-prefix "dct:identifier")))
+  :properties `((:provider    :uri ,(s-prefix "foaf:accountServiceHomepage"))
+                (:vo-id       :string ,(s-prefix "dct:identifier")))
   :has-one `((user            :via ,(s-prefix "foaf:account")
                               :inverse t
                               :as "user"))
@@ -26,7 +26,8 @@
 (define-resource account-group ()
   :class (s-prefix "foaf:Group")
   :resource-base (s-url "http://kanselarij.vo.data.gift/id/account-groups/")
-  :properties `((:name  :via ,(s-prefix "foaf:name")))
+  :properties `((:name  :via ,(s-prefix "foaf:name"))
+                (:ovo-code  :via ,(s-prefix "dct:identifier")))
   :has-many `((user     :via ,(s-prefix "foaf:member")
                         :as "users"))
   :on-path "account-groups"
