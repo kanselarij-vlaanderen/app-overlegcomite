@@ -1,0 +1,42 @@
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX user: <http://data.kanselarij.vlaanderen.be/id/gebruiker/>
+PREFIX account: <http://data.kanselarij.vlaanderen.be/id/account/>
+PREFIX group: <http://data.kanselarij.vlaanderen.be/id/group/>
+PREFIX mu: <http://mu.semte.ch/vocabularies/core/>
+PREFIX besluit: <http://data.vlaanderen.be/ns/besluit#>
+
+INSERT DATA {
+  GRAPH <http://mu.semte.ch/graphs/public> {
+    group:user a foaf:Group ;
+        mu:uuid "450915b2-4c64-4b03-9caa-71180400f831" ;
+        foaf:name "users" .
+        
+    group:admin a foaf:Group ;
+        mu:uuid "71c068e6-d2f0-43de-93ab-cd1e7156ac4b" ;
+        dct:identifier "ADMIN" ;
+        foaf:name "admin" .
+        
+    group:kanselarij a foaf:Group ;
+        mu:uuid "50f4c79c-902d-4ad2-bca1-0f37a69f0c13" ;
+        dct:identifier "OVO001827" ;
+        foaf:name "kanselarij" .
+
+    group:kabinet a foaf:Group ;
+        mu:uuid "7e8c0c9c-05ec-49fd-9e96-fc54ebf3f9eb" ;
+        foaf:name "kabinet" .
+
+    group:adviesverlener a foaf:Group ;
+        mu:uuid "3e824494-bbe7-45cf-aed8-5828970a10dc" ;
+        foaf:name "adviesverlener" .
+
+    group:administratie a foaf:Group ;
+        mu:uuid "a22f80e0-f302-4f13-9af0-52bcf949333e" ;
+        foaf:name "administratie" .
+
+    group:parlement a foaf:Group ;
+        mu:uuid "e2e9b836-6080-4c70-95ee-49e828ee2f66" ;
+        dct:identifier "OVO000617" ;
+        foaf:name "Vlaams Parlement" .
+  }
+}
