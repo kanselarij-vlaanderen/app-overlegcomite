@@ -2,14 +2,22 @@
   :class (s-prefix "foaf:Person")
   :resource-base (s-url "http://kanselarij.vo.data.gift/id/gebruikers/")
   :properties `((:first-name            :string   ,(s-prefix "foaf:firstName"))
-                (:last-name             :string   ,(s-prefix "foaf:familyName"))
-                (:rijksregister-nummer  :string   ,(s-prefix "dct:identifier")))
+                (:last-name             :string   ,(s-prefix "foaf:familyName")))
   :has-one `((account-group             :via      ,(s-prefix "foaf:member")
                                         :inverse t
                                         :as "group")
              (account                   :via      ,(s-prefix "foaf:account")
-                                        :as "account"))
+                                        :as "account")
+             (identifier                :via      ,(s-prefix "adms:identifier")
+                                        :as "identifier"))
   :on-path "users"
+)
+
+(define-resource identifier ()
+  :class (s-prefix "adms:Identifier")
+  :resource-base (s-url "http://kanselarij.vo.data.gift/id/identificator/")
+  :properties `((:notation            :string   ,(s-prefix "skos:notation")))
+  :on-path "identifiers"
 )
 
 (define-resource account ()

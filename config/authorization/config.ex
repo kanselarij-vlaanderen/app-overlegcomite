@@ -44,6 +44,7 @@ defmodule Acl.UserGroups.Config do
       "http://data.vlaanderen.be/ns/besluit#Bestuursorgaan",
       "http://xmlns.com/foaf/0.1/Person",
       "http://xmlns.com/foaf/0.1/OnlineAccount",
+      "http://www.w3.org/ns/adms#Identifier",
       "http://xmlns.com/foaf/0.1/Group"
     ]
   end
