@@ -52,10 +52,15 @@ defmodule Acl.UserGroups.Config do
     [
       "http://mu.semte.ch/vocabularies/ext/oc/Meeting",
       "http://mu.semte.ch/vocabularies/ext/oc/AgendaItem",
-      "http://mu.semte.ch/vocabularies/ext/oc/Case",
       "http://xmlns.com/foaf/0.1/Document",
       "http://mu.semte.ch/vocabularies/ext/DocumentVersie",
       "http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#FileDataObject",
+    ]
+  end
+
+  defp authenticated_user_resource_types() do
+    [
+      "http://mu.semte.ch/vocabularies/ext/oc/Case",
     ]
   end
 
@@ -90,6 +95,12 @@ defmodule Acl.UserGroups.Config do
                     }
                   },
                   %GraphSpec{
+                    graph: "http://mu.semte.ch/graphs/authenticated-users",
+                    constraint: %ResourceConstraint{
+                      resource_types: authenticated_user_resource_types()
+                    }
+                  },
+                  %GraphSpec{
                     graph: "http://mu.semte.ch/graphs/public",
                     constraint: %ResourceConstraint{
                       resource_types: public_resource_types()
@@ -108,6 +119,12 @@ defmodule Acl.UserGroups.Config do
                     constraint: %ResourceConstraint{
                       resource_types: private_resource_types()
                     }
+                  },
+                  %GraphSpec{
+                    graph: "http://mu.semte.ch/graphs/authenticated-users",
+                    constraint: %ResourceConstraint{
+                      resource_types: authenticated_user_resource_types()
+                    }
                   }
               ]
       },
@@ -121,6 +138,12 @@ defmodule Acl.UserGroups.Config do
                     graph: "http://mu.semte.ch/graphs/organizations/kabinet",
                     constraint: %ResourceConstraint{
                       resource_types: private_resource_types()
+                    }
+                  },
+                  %GraphSpec{
+                    graph: "http://mu.semte.ch/graphs/authenticated-users",
+                    constraint: %ResourceConstraint{
+                      resource_types: authenticated_user_resource_types()
                     }
                   }
                 ]
@@ -138,6 +161,12 @@ defmodule Acl.UserGroups.Config do
                     constraint: %ResourceConstraint{
                       resource_types: private_resource_types()
                     }
+                  },
+                  %GraphSpec{
+                    graph: "http://mu.semte.ch/graphs/authenticated-users",
+                    constraint: %ResourceConstraint{
+                      resource_types: authenticated_user_resource_types()
+                    }
                   }
                 ]
       },
@@ -151,6 +180,12 @@ defmodule Acl.UserGroups.Config do
                     graph: "http://mu.semte.ch/graphs/organizations/parlement",
                     constraint: %ResourceConstraint{
                       resource_types: private_resource_types()
+                    }
+                  },
+                  %GraphSpec{
+                    graph: "http://mu.semte.ch/graphs/authenticated-users",
+                    constraint: %ResourceConstraint{
+                      resource_types: authenticated_user_resource_types()
                     }
                   }
                 ]

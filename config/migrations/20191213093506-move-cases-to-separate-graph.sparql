@@ -1,0 +1,18 @@
+PREFIX oc: <http://mu.semte.ch/vocabularies/ext/oc/>
+
+DELETE {
+    GRAPH <http://mu.semte.ch/graphs/organizations/kanselarij> {
+        ?case ?p ?o .
+    }
+}
+INSERT {
+    GRAPH <http://mu.semte.ch/graphs/authenticated-users> {
+          ?case ?p ?o .
+    }
+}
+WHERE {
+  GRAPH <http://mu.semte.ch/graphs/organizations/kanselarij> {
+      ?case a oc:Case ;
+          ?p ?o .
+  }
+}
