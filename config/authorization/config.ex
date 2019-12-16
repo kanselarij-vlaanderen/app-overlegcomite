@@ -149,11 +149,13 @@ defmodule Acl.UserGroups.Config do
                   }
               ]
       },
-      
+
+      # Currently "kabinet" and "adviesverlener" have equal rights. They both read from kabinet graph
       %GroupSpec{
         name: "kabinet",
         useage: [:read],
-        access: access_by_role("<http://data.kanselarij.vlaanderen.be/id/group/kabinet>"),
+        access: access_by_role("<http://data.kanselarij.vlaanderen.be/id/group/kabinet>
+                                <http://data.kanselarij.vlaanderen.be/id/group/adviesverlener>"),
         graphs: [
                   %GraphSpec{
                     graph: "http://mu.semte.ch/graphs/organizations/kabinet",
@@ -169,36 +171,16 @@ defmodule Acl.UserGroups.Config do
                   }
                 ]
       },
-      
-      # Currently "adviesverlener" and "administratie" have equal rights. They both read from adviesverlener graph
+
+      # Currently "administratie" and "parlement" have equal rights. They both read from administratie graph
       %GroupSpec{
-        name: "adviesverlener",
+        name: "administratie",
         useage: [:read],
-        access: access_by_role("<http://data.kanselarij.vlaanderen.be/id/group/adviesverlener>
-                                <http://data.kanselarij.vlaanderen.be/id/group/administratie>"),
+        access: access_by_role("<http://data.kanselarij.vlaanderen.be/id/group/administratie>
+                                <http://data.kanselarij.vlaanderen.be/id/group/parlement>"),
         graphs: [
                   %GraphSpec{
-                    graph: "http://mu.semte.ch/graphs/organizations/adviesverlener",
-                    constraint: %ResourceConstraint{
-                      resource_types: private_resource_types()
-                    }
-                  },
-                  %GraphSpec{
-                    graph: "http://mu.semte.ch/graphs/authenticated-users",
-                    constraint: %ResourceConstraint{
-                      resource_types: authenticated_user_resource_types()
-                    }
-                  }
-                ]
-      },
-      
-      %GroupSpec{
-        name: "parlement",
-        useage: [:read],
-        access: access_by_role("<http://data.kanselarij.vlaanderen.be/id/group/parlement>"),
-        graphs: [
-                  %GraphSpec{
-                    graph: "http://mu.semte.ch/graphs/organizations/parlement",
+                    graph: "http://mu.semte.ch/graphs/organizations/administratie",
                     constraint: %ResourceConstraint{
                       resource_types: private_resource_types()
                     }
