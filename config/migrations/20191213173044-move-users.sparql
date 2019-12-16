@@ -1,0 +1,44 @@
+PREFIX oc: <http://mu.semte.ch/vocabularies/ext/oc/>
+PREFIX grp:	<http://data.kanselarij.vlaanderen.be/id/group/>
+PREFIX acmidm:	<http://mu.semte.ch/vocabularies/ext/acmidm/>
+
+# al wie "overheid" -> "administratie"
+DELETE {
+    GRAPH <http://mu.semte.ch/graphs/public> {
+        grp:overheid foaf:member ?person .
+    }
+}
+INSERT {
+    GRAPH <http://mu.semte.ch/graphs/public> {
+        grp:administratie foaf:member ?person .
+    }
+}
+WHERE {
+    GRAPH <http://mu.semte.ch/graphs/public> {
+        grp:overheid foaf:member ?person .
+        ?person a foaf:Person .
+    }
+}
+
+;
+
+# al wie doelgroepcode "Vlaams Parlement" -> "Parlement"
+DELETE {
+    GRAPH <http://mu.semte.ch/graphs/public> {
+        ?group foaf:member ?person .
+    }
+}
+INSERT {
+    GRAPH <http://mu.semte.ch/graphs/public> {
+        grp:parlement foaf:member ?person .
+    }
+}
+WHERE {
+    GRAPH <http://mu.semte.ch/graphs/public> {
+      ?person a foaf:Person ;
+          foaf:account ?account .
+      ?account a foaf:OnlineAccount ;
+          acmidm:doelgroepNaam "Vlaams Parlement" .
+      ?group foaf:member ?person .
+    }
+}
