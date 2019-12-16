@@ -1,0 +1,31 @@
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX user: <http://data.kanselarij.vlaanderen.be/id/gebruiker/>
+PREFIX account: <http://data.kanselarij.vlaanderen.be/id/account/>
+PREFIX group: <http://data.kanselarij.vlaanderen.be/id/group/>
+PREFIX mu: <http://mu.semte.ch/vocabularies/core/>
+PREFIX besluit: <http://data.vlaanderen.be/ns/besluit#>
+
+INSERT DATA {
+    GRAPH <http://mu.semte.ch/graphs/public> {
+        group:minister a foaf:Group ;
+            mu:uuid "1cc0710c-1b28-4e23-b3ff-399c8089bc71" ;
+            foaf:name "Minister" .
+
+        
+        user:minister a foaf:Person ;
+            mu:uuid "50534fc6-081b-42a9-9f66-5fee39ca6347" ;
+            foaf:firstName "Minister" ;
+            foaf:familyName "Test" ;
+            dct:identifier "00.00.00-000.01" ;
+            foaf:account account:minister .
+
+        account:minister a foaf:OnlineAccount ;
+            mu:uuid "bec81e4d-8a83-4d07-a79b-df4cd05ee518" ;
+            foaf:accountServiceHomepage "https://github.com/kanselarij-vlaanderen/mock-login-service" ;
+            dct:identifier "7" .
+
+        group:minister foaf:member user:minister .
+
+    }
+}

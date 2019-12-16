@@ -131,6 +131,26 @@ defmodule Acl.UserGroups.Config do
       },
       
       %GroupSpec{
+        name: "minister",
+        useage: [:read],
+        access: access_by_role("<http://data.kanselarij.vlaanderen.be/id/group/minister>"),
+        graphs: [
+                  %GraphSpec{
+                    graph: "http://mu.semte.ch/graphs/organizations/minister",
+                    constraint: %ResourceConstraint{
+                      resource_types: private_resource_types()
+                    }
+                  },
+                  %GraphSpec{
+                    graph: "http://mu.semte.ch/graphs/authenticated-users",
+                    constraint: %ResourceConstraint{
+                      resource_types: authenticated_user_resource_types()
+                    }
+                  }
+              ]
+      },
+      
+      %GroupSpec{
         name: "kabinet",
         useage: [:read],
         access: access_by_role("<http://data.kanselarij.vlaanderen.be/id/group/kabinet>"),
