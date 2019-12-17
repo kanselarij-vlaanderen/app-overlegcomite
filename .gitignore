@@ -12,3 +12,5 @@ config/migrations/*
 
 # Files
 /data/files/*
+
+/data/elasticsearch/*

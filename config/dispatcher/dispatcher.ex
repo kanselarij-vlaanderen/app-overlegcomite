@@ -100,6 +100,15 @@ defmodule Dispatcher do
   end
 
 
+  match "/agendaitems-by-notification/search/*path" do
+    Proxy.forward conn, path, "http://search/agendaitems-by-notification/search/"
+  end
+
+  match "/agendaitems-by-documents/search/*path" do
+    Proxy.forward conn, path, "http://search/agendaitems-by-documents/search/"
+  end
+
+
   match _ do
     send_resp( conn, 404, "Route not found.  See config/dispatcher.ex" )
   end

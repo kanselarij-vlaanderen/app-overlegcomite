@@ -1,0 +1,129 @@
+{
+  "batch_size": 128,
+  "max_batches": 0,
+  "automatic_index_updates": true,
+  "eager_indexing_groups": [
+                             [{"name": "admin", "variables" : []}],
+                             [{"name": "kanselarij", "variables" : []}],
+                             [{"name": "minister", "variables" : []}],
+                             [{"name": "kabinet", "variables" : []}],
+                             [{"name": "administratie", "variables" : []}]
+                           ],
+  "attachments_path_base": "/data/",
+  "eager_indexing_sparql_query": false,
+  "additive_indexes": true,
+  "persist_indexes": true,
+  "default_settings": {
+    "analysis": {
+      "analyzer": {
+        "dutchanalyzer": {
+          "tokenizer": "standard",
+          "filter": [
+            "lowercase",
+            "dutchstemmer"
+          ]
+        }
+      },
+      "filter": {
+        "dutchstemmer": {
+          "type": "stemmer",
+          "name": "dutch"
+        }
+      }
+    }
+  },
+  "types": [
+    {
+      "type": "agendaitems-by-notification",
+      "on_path": "agendaitems-by-notification",
+      "rdf_type": "http://mu.semte.ch/vocabularies/ext/oc/AgendaItem",
+      "properties": {
+        "subject": "http://purl.org/dc/terms/subject",
+        "meetingId": [
+          "^http://mu.semte.ch/vocabularies/ext/oc/agendaItem",
+          "http://mu.semte.ch/vocabularies/core/uuid"
+        ],
+        "meetingDate": [
+          "^http://mu.semte.ch/vocabularies/ext/oc/agendaItem",
+          "http://www.w3.org/ns/prov#startedAtTime"
+        ],
+        "data": {
+          "via": [
+            "http://mu.semte.ch/vocabularies/ext/oc/notification",
+            "http://mu.semte.ch/vocabularies/ext/bevatDocumentversie",
+            "http://mu.semte.ch/vocabularies/ext/file",
+            "^http://www.semanticdesktop.org/ontologies/2007/01/19/nie#dataSource"
+          ],
+          "attachment_pipeline": "attachment"
+        }
+      },
+      "mappings": {
+        "properties": {
+          "subject": {
+            "type": "text",
+            "analyzer": "dutchanalyzer",
+            "search_analyzer": "dutchanalyzer"
+          },
+          "meetingId": {
+            "type": "keyword"
+          },
+          "meetingDate": {
+            "type": "date"
+          },
+          "attachment.content": {
+            "type": "text",
+            "analyzer": "dutchanalyzer",
+            "search_analyzer": "dutchanalyzer",
+            "term_vector": "with_positions_offsets_payloads"
+          }
+        }
+      }
+    },
+    {
+      "type": "agendaitems-by-documents",
+      "on_path": "agendaitems-by-documents",
+      "rdf_type": "http://mu.semte.ch/vocabularies/ext/oc/AgendaItem",
+      "properties": {
+        "subject": "http://purl.org/dc/terms/subject",
+        "meetingId": [
+          "^http://mu.semte.ch/vocabularies/ext/oc/agendaItem",
+          "http://mu.semte.ch/vocabularies/core/uuid"
+        ],
+        "meetingDate": [
+          "^http://mu.semte.ch/vocabularies/ext/oc/agendaItem",
+          "http://www.w3.org/ns/prov#startedAtTime"
+        ],
+        "data": {
+          "via": [
+            "http://mu.semte.ch/vocabularies/ext/oc/documents",
+            "http://mu.semte.ch/vocabularies/ext/bevatDocumentversie",
+            "http://mu.semte.ch/vocabularies/ext/file",
+            "^http://www.semanticdesktop.org/ontologies/2007/01/19/nie#dataSource"
+          ],
+          "attachment_pipeline": "attachment"
+        }
+      },
+      "mappings": {
+        "properties": {
+          "subject": {
+            "type": "text",
+            "analyzer": "dutchanalyzer",
+            "search_analyzer": "dutchanalyzer"
+          },
+          "meetingId": {
+            "type": "keyword"
+          },
+          "meetingDate": {
+            "type": "date"
+          },
+          "attachment.content": {
+            "type": "text",
+            "analyzer": "dutchanalyzer",
+            "search_analyzer": "dutchanalyzer",
+            "term_vector": "with_positions_offsets_payloads"
+          }
+        }
+      }
+    }
+  ]
+}

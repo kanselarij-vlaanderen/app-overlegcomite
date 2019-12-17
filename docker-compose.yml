@@ -89,6 +89,27 @@ services:
       - ./data/files:/share
     logging: *default-logging
     restart: always
+  search:
+    image: semtech/mu-search:0.6.0-beta.6
+    environment:
+      MU_SPARQL_ENDPOINT: "http://triplestore:8890/sparql"
+    volumes:
+      - ./config/search:/config
+    labels:
+      - "logging=true"
+    restart: always
+    logging: *default-logging
+  elasticsearch:
+    image: semtech/mu-search-elastic-backend:1.0.0
+    environment:
+      - cluster.initial_master_nodes=elasticsearch
+      - node.name=elasticsearch
+    volumes:
+      - ./data/elasticsearch/:/usr/share/elasticsearch/data
+    labels:
+      - "logging=true"
+    restart: always
+    logging: *default-logging
   cache:
     image: semtech/mu-cache:2.0.1
     links:
