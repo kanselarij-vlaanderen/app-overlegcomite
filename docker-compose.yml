@@ -92,7 +92,7 @@ services:
   search:
     image: semtech/mu-search:0.6.0-beta.7
     environment:
-      MU_SPARQL_ENDPOINT: "http://triplestore:8890/sparql"
+      MU_SPARQL_ENDPOINT: "http://database:8890/sparql"
     volumes:
       - ./config/search:/config
     labels:
@@ -110,6 +110,12 @@ services:
       - "logging=true"
     restart: always
     logging: *default-logging
+  deltanotifier:
+    image: semtech/mu-delta-notifier:0.1.0
+    volumes:
+        - ./config/delta:/config
+    logging: *default-logging
+    restart: always
   cache:
     image: semtech/mu-cache:2.0.1
     links:
