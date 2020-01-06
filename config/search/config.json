@@ -20,7 +20,8 @@
           "tokenizer": "standard",
           "filter": [
             "lowercase",
-            "dutchstemmer"
+            "dutchstemmer",
+            "asciifolding"
           ]
         }
       },
