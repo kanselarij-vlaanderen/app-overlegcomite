@@ -95,6 +95,7 @@ services:
       MU_SPARQL_ENDPOINT: "http://database:8890/sparql"
     volumes:
       - ./config/search:/config
+      - ./data/files:/data
     labels:
       - "logging=true"
     restart: always
