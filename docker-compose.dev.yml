@@ -14,6 +14,19 @@ services:
       LOG_OUTGOING_SPARQL_QUERIES: "true"
       LOG_INCOMING_SPARQL_QUERIES: "true"
       LOG_ACCESS_RIGHTS: "true"
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.2.0
+    volumes:
+      - ./config/search:/search
+    ports:
+      - 5601:5601
+    userns_mode: "host"
+    environment:
+      ELASTICSEARCH_URL: "http://elasticsearch:9200"
+    restart: "no"
+  elasticsearch:
+    ports:
+      - 9200:9200
   login:
     entrypoint: "echo 'service disabled'"
     restart: "no"
