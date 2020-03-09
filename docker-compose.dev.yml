@@ -19,14 +19,14 @@ services:
     volumes:
       - ./config/search:/search
     ports:
-      - 5601:5601
+      - 127.0.0.1:5601:5601
     userns_mode: "host"
     environment:
       ELASTICSEARCH_URL: "http://elasticsearch:9200"
     restart: "no"
   elasticsearch:
     ports:
-      - 9200:9200
+      - 127.0.0.1:9200:9200
   login:
     entrypoint: "echo 'service disabled'"
     restart: "no"
