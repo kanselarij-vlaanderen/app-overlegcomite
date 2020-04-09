@@ -60,7 +60,7 @@ defmodule Acl.UserGroups.Config do
     ]
   end
 
-  defp authenticated_user_resource_types() do
+  defp case_related_types() do
     [
       "http://mu.semte.ch/vocabularies/ext/oc/Case",
     ]
@@ -113,7 +113,7 @@ defmodule Acl.UserGroups.Config do
                   %GraphSpec{
                     graph: "http://mu.semte.ch/graphs/authenticated-users",
                     constraint: %ResourceConstraint{
-                      resource_types: authenticated_user_resource_types()
+                      resource_types: case_related_types()
                     }
                   },
                   %GraphSpec{
@@ -139,7 +139,7 @@ defmodule Acl.UserGroups.Config do
                   %GraphSpec{
                     graph: "http://mu.semte.ch/graphs/authenticated-users",
                     constraint: %ResourceConstraint{
-                      resource_types: authenticated_user_resource_types()
+                      resource_types: case_related_types()
                     }
                   }
               ]
@@ -159,7 +159,7 @@ defmodule Acl.UserGroups.Config do
                   %GraphSpec{
                     graph: "http://mu.semte.ch/graphs/authenticated-users",
                     constraint: %ResourceConstraint{
-                      resource_types: authenticated_user_resource_types()
+                      resource_types: case_related_types()
                     }
                   }
               ]
@@ -181,7 +181,7 @@ defmodule Acl.UserGroups.Config do
                   %GraphSpec{
                     graph: "http://mu.semte.ch/graphs/authenticated-users",
                     constraint: %ResourceConstraint{
-                      resource_types: authenticated_user_resource_types()
+                      resource_types: case_related_types()
                     }
                   }
                 ]
@@ -231,7 +231,7 @@ defmodule Acl.UserGroups.Config do
                   %GraphSpec{
                     graph: "http://mu.semte.ch/graphs/authenticated-users",
                     constraint: %ResourceConstraint{
-                      resource_types: authenticated_user_resource_types()
+                      resource_types: case_related_types()
                     }
                   }
                 ]
