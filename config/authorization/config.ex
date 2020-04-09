@@ -13,9 +13,7 @@ defmodule Acl.UserGroups.Config do
   defp access_by_role( group_uris ) do
     %AccessByQuery{
       vars: [],
-      query: "PREFIX ext: <http://mu.semte.ch/vocabularies/ext/>
-              PREFIX mu: <http://mu.semte.ch/vocabularies/core/>
-              PREFIX session: <http://mu.semte.ch/vocabularies/session/>
+      query: "PREFIX session: <http://mu.semte.ch/vocabularies/session/>
               PREFIX foaf: <http://xmlns.com/foaf/0.1/>
               SELECT ?group_uri WHERE {
                 <SESSION_ID> session:account / ^foaf:account / ^foaf:member ?group_uri .
@@ -27,9 +25,7 @@ defmodule Acl.UserGroups.Config do
   defp access_by_has_a_role() do
     %AccessByQuery{
       vars: [],
-      query: "PREFIX ext: <http://mu.semte.ch/vocabularies/ext/>
-              PREFIX mu: <http://mu.semte.ch/vocabularies/core/>
-              PREFIX session: <http://mu.semte.ch/vocabularies/session/>
+      query: "PREFIX session: <http://mu.semte.ch/vocabularies/session/>
               PREFIX foaf: <http://xmlns.com/foaf/0.1/>
               SELECT ?role WHERE {
                 <SESSION_ID> session:account / ^foaf:account / ^foaf:member ?role .
