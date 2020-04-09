@@ -115,12 +115,6 @@ defmodule Acl.UserGroups.Config do
             constraint: %ResourceConstraint{
               resource_types: case_related_types()
             }
-          },
-          %GraphSpec{
-            graph: "http://mu.semte.ch/graphs/public",
-            constraint: %ResourceConstraint{
-              resource_types: fixed_code_list_types()
-            }
           }
         ]
       },
