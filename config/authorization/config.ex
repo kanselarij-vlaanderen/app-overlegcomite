@@ -38,10 +38,15 @@ defmodule Acl.UserGroups.Config do
       "http://mu.semte.ch/vocabularies/ext/DocumentTypeCode",
       "http://mu.semte.ch/vocabularies/ext/ToegangsniveauCode",
       "http://data.vlaanderen.be/ns/besluit#Bestuursorgaan",
+      "http://xmlns.com/foaf/0.1/Group"
+    ]
+  end
+
+  defp account_info_types() do
+    [
       "http://xmlns.com/foaf/0.1/Person",
       "http://xmlns.com/foaf/0.1/OnlineAccount",
-      "http://www.w3.org/ns/adms#Identifier",
-      "http://xmlns.com/foaf/0.1/Group"
+      "http://www.w3.org/ns/adms#Identifier"
     ]
   end
 
@@ -81,6 +86,20 @@ defmodule Acl.UserGroups.Config do
       },
 
       %GroupSpec{
+        name: "admin-r",
+        useage: [:read],
+        access: access_by_role("<http://data.kanselarij.vlaanderen.be/id/group/admin>"),
+        graphs: [
+                  %GraphSpec{
+                    graph: "http://mu.semte.ch/graphs/admins",
+                    constraint: %ResourceConstraint{
+                      resource_types: account_info_types()
+                    }
+                  }
+              ]
+      },
+      
+      %GroupSpec{
         name: "admin",
         useage: [:read, :write,:read_for_write],
         access: access_by_role("<http://data.kanselarij.vlaanderen.be/id/group/admin>"),
@@ -114,7 +133,7 @@ defmodule Acl.UserGroups.Config do
                   %GraphSpec{
                     graph: "http://mu.semte.ch/graphs/organizations/kanselarij",
                     constraint: %ResourceConstraint{
-                      resource_types: agenda_related_types()
+                      resource_types: agenda_related_types() ++ account_info_types()
                     }
                   },
                   %GraphSpec{
@@ -134,7 +153,7 @@ defmodule Acl.UserGroups.Config do
                   %GraphSpec{
                     graph: "http://mu.semte.ch/graphs/organizations/minister",
                     constraint: %ResourceConstraint{
-                      resource_types: agenda_related_types()
+                      resource_types: agenda_related_types() ++ account_info_types()
                     }
                   },
                   %GraphSpec{
@@ -146,9 +165,9 @@ defmodule Acl.UserGroups.Config do
               ]
       },
 
-      # Currently "kabinet" and "adviesverlener" have equal rights. They both read from kabinet graph
+      # Currently "kabinet" and "adviesverlener" have equal rights for agenda viewing. They both read from kabinet graph
       %GroupSpec{
-        name: "kabinet",
+        name: "kabinet+adviesverlener",
         useage: [:read],
         access: access_by_role("<http://data.kanselarij.vlaanderen.be/id/group/kabinet>
                                 <http://data.kanselarij.vlaanderen.be/id/group/adviesverlener>"),
@@ -168,9 +187,37 @@ defmodule Acl.UserGroups.Config do
                 ]
       },
 
-      # Currently "administratie" and "parlement" have equal rights. They both read from administratie graph
       %GroupSpec{
-        name: "administratie",
+        name: "kabinet",
+        useage: [:read],
+        access: access_by_role("<http://data.kanselarij.vlaanderen.be/id/group/kabinet>"),
+        graphs: [
+                  %GraphSpec{
+                    graph: "http://mu.semte.ch/graphs/organizations/kabinet",
+                    constraint: %ResourceConstraint{
+                      resource_types: account_info_types()
+                    }
+                  }
+                ]
+      },
+
+      %GroupSpec{
+        name: "adviesverlener",
+        useage: [:read],
+        access: access_by_role("<http://data.kanselarij.vlaanderen.be/id/group/adviesverlener>"),
+        graphs: [
+                  %GraphSpec{
+                    graph: "http://mu.semte.ch/graphs/organizations/adviesverlener",
+                    constraint: %ResourceConstraint{
+                      resource_types: account_info_types()
+                    }
+                  }
+                ]
+      },
+
+      # Currently "administratie" and "parlement" have equal rights for agenda viewing. They both read from administratie graph
+      %GroupSpec{
+        name: "administratie+parlement",
         useage: [:read],
         access: access_by_role("<http://data.kanselarij.vlaanderen.be/id/group/administratie>
                                 <http://data.kanselarij.vlaanderen.be/id/group/parlement>"),
@@ -185,6 +232,34 @@ defmodule Acl.UserGroups.Config do
                     graph: "http://mu.semte.ch/graphs/authenticated-users",
                     constraint: %ResourceConstraint{
                       resource_types: authenticated_user_resource_types()
+                    }
+                  }
+                ]
+      },
+      
+      %GroupSpec{
+        name: "administratie",
+        useage: [:read],
+        access: access_by_role("<http://data.kanselarij.vlaanderen.be/id/group/administratie>"),
+        graphs: [
+                  %GraphSpec{
+                    graph: "http://mu.semte.ch/graphs/organizations/administratie",
+                    constraint: %ResourceConstraint{
+                      resource_types: account_info_types()
+                    }
+                  }
+                ]
+      },
+      
+      %GroupSpec{
+        name: "parlement",
+        useage: [:read],
+        access: access_by_role("<http://data.kanselarij.vlaanderen.be/id/group/parlement>"),
+        graphs: [
+                  %GraphSpec{
+                    graph: "http://mu.semte.ch/graphs/organizations/parlement",
+                    constraint: %ResourceConstraint{
+                      resource_types: account_info_types()
                     }
                   }
                 ]
