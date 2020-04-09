@@ -64,8 +64,8 @@ defmodule Acl.UserGroups.Config do
 
   def user_groups do
     [
-      # // PUBLIC
-      # FIXME: Read access doesn't seem limited to the specified resource types
+      # NOTE: Behavior when graph already contains more info than constraints specify, is undefined.
+      # Currently, read access then isn't limited to the specified resource types
       %GroupSpec{
         name: "public",
         useage: [:read],
