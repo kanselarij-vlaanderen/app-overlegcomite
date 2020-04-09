@@ -37,7 +37,7 @@ defmodule Acl.UserGroups.Config do
     }
   end
 
-  defp public_resource_types() do
+  defp fixed_code_list_types() do
     [
       "http://mu.semte.ch/vocabularies/ext/DocumentTypeCode",
       "http://mu.semte.ch/vocabularies/ext/ToegangsniveauCode",
@@ -78,7 +78,7 @@ defmodule Acl.UserGroups.Config do
                   %GraphSpec{
                     graph: "http://mu.semte.ch/graphs/public",
                     constraint: %ResourceConstraint{
-                      resource_types: public_resource_types()
+                      resource_types: fixed_code_list_types()
                     }
                   }
                 ]
@@ -104,7 +104,7 @@ defmodule Acl.UserGroups.Config do
                   %GraphSpec{
                     graph: "http://mu.semte.ch/graphs/public",
                     constraint: %ResourceConstraint{
-                      resource_types: public_resource_types()
+                      resource_types: fixed_code_list_types()
                     }
                   }
               ]
