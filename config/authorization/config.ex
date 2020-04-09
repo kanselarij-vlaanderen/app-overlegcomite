@@ -100,7 +100,21 @@ defmodule Acl.UserGroups.Config do
       },
       
       %GroupSpec{
-        name: "admin",
+        name: "admin-w",
+        useage: [:write,:read_for_write],
+        access: access_by_role("<http://data.kanselarij.vlaanderen.be/id/group/admin>"),
+        graphs: [
+          %GraphSpec{
+            graph: "http://mu.semte.ch/graphs/account-info", # Admins write in here, user-info-distributor service distributes to the right graphs
+            constraint: %ResourceConstraint{
+              resource_types: account_info_types()
+            }
+          }
+        ]
+      },
+      
+      %GroupSpec{
+        name: "admin-rw",
         useage: [:read, :write,:read_for_write],
         access: access_by_role("<http://data.kanselarij.vlaanderen.be/id/group/admin>"),
         graphs: [
