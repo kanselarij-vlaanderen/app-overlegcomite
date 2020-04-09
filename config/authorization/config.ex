@@ -40,7 +40,7 @@ defmodule Acl.UserGroups.Config do
   defp public_resource_types() do
     [
       "http://mu.semte.ch/vocabularies/ext/DocumentTypeCode",
-      "http://mu.semte.ch/vocabularies/ext/ToegangsniveaCode",
+      "http://mu.semte.ch/vocabularies/ext/ToegangsniveauCode",
       "http://data.vlaanderen.be/ns/besluit#Bestuursorgaan",
       "http://xmlns.com/foaf/0.1/Person",
       "http://xmlns.com/foaf/0.1/OnlineAccount",
