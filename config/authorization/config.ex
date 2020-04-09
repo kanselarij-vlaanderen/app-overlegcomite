@@ -45,7 +45,7 @@ defmodule Acl.UserGroups.Config do
     ]
   end
 
-  defp private_resource_types() do
+  defp agenda_related_types() do
     [
       "http://mu.semte.ch/vocabularies/ext/oc/Meeting",
       "http://mu.semte.ch/vocabularies/ext/oc/AgendaItem",
@@ -88,7 +88,7 @@ defmodule Acl.UserGroups.Config do
                   %GraphSpec{
                     graph: "http://mu.semte.ch/graphs/organizations/kanselarij",
                     constraint: %ResourceConstraint{
-                      resource_types: private_resource_types()
+                      resource_types: agenda_related_types()
                     }
                   },
                   %GraphSpec{
@@ -114,7 +114,7 @@ defmodule Acl.UserGroups.Config do
                   %GraphSpec{
                     graph: "http://mu.semte.ch/graphs/organizations/kanselarij",
                     constraint: %ResourceConstraint{
-                      resource_types: private_resource_types()
+                      resource_types: agenda_related_types()
                     }
                   },
                   %GraphSpec{
@@ -134,7 +134,7 @@ defmodule Acl.UserGroups.Config do
                   %GraphSpec{
                     graph: "http://mu.semte.ch/graphs/organizations/minister",
                     constraint: %ResourceConstraint{
-                      resource_types: private_resource_types()
+                      resource_types: agenda_related_types()
                     }
                   },
                   %GraphSpec{
@@ -156,7 +156,7 @@ defmodule Acl.UserGroups.Config do
                   %GraphSpec{
                     graph: "http://mu.semte.ch/graphs/organizations/kabinet",
                     constraint: %ResourceConstraint{
-                      resource_types: private_resource_types()
+                      resource_types: agenda_related_types()
                     }
                   },
                   %GraphSpec{
@@ -178,7 +178,7 @@ defmodule Acl.UserGroups.Config do
                   %GraphSpec{
                     graph: "http://mu.semte.ch/graphs/organizations/administratie",
                     constraint: %ResourceConstraint{
-                      resource_types: private_resource_types()
+                      resource_types: agenda_related_types()
                     }
                   },
                   %GraphSpec{
