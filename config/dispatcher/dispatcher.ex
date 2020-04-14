@@ -33,6 +33,10 @@ defmodule Dispatcher do
     Proxy.forward conn, path, "http://cache/account-groups/"
   end
 
+  match "/organizations/*path" do
+    Proxy.forward conn, path, "http://cache/organizations/"
+  end
+
 
   get "/files/:id/download/*path" do
     Proxy.forward conn, path, "http://range-file/files/" <> id <> "/download/"

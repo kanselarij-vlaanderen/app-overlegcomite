@@ -21,3 +21,4 @@
 (read-domain-file "mandate-domain.lisp")
 (read-domain-file "oc-domain.lisp")
 (read-domain-file "users-domain.lisp")
+(read-domain-file "organisatie-domain.lisp")

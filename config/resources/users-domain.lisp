@@ -2,12 +2,17 @@
   :class (s-prefix "foaf:Person")
   :resource-base (s-url "http://kanselarij.vo.data.gift/id/gebruikers/")
   :properties `((:first-name            :string   ,(s-prefix "foaf:firstName"))
-                (:last-name             :string   ,(s-prefix "foaf:familyName")))
+                (:last-name             :string   ,(s-prefix "foaf:familyName"))
+                (:email-link            :url      ,(s-prefix "foaf:mbox"))
+                (:phone-link            :url      ,(s-prefix "foaf:phone")))
   :has-one `((account-group             :via      ,(s-prefix "foaf:member")
                                         :inverse t
                                         :as "group")
              (account                   :via      ,(s-prefix "foaf:account")
-                                        :as "account"))
+                                        :as "account")
+             (organization              :via      ,(s-prefix "org:memberOf")
+                                        :as "organization")
+            )
   :on-path "users"
 )
 
@@ -25,8 +30,7 @@
 (define-resource account-group ()
   :class (s-prefix "foaf:Group")
   :resource-base (s-url "http://kanselarij.vo.data.gift/id/account-groups/")
-  :properties `((:name  :via ,(s-prefix "foaf:name"))
-                (:ovo-code  :via ,(s-prefix "dct:identifier")))
+  :properties `((:name  :via ,(s-prefix "foaf:name")))
   :has-many `((user     :via ,(s-prefix "foaf:member")
                         :as "users"))
   :on-path "account-groups"

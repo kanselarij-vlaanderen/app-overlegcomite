@@ -38,7 +38,8 @@ defmodule Acl.UserGroups.Config do
       "http://mu.semte.ch/vocabularies/ext/DocumentTypeCode",
       "http://mu.semte.ch/vocabularies/ext/ToegangsniveauCode",
       "http://data.vlaanderen.be/ns/besluit#Bestuursorgaan",
-      "http://xmlns.com/foaf/0.1/Group"
+      "http://xmlns.com/foaf/0.1/Group",
+      "http://www.w3.org/ns/org#Organization"
     ]
   end
 
