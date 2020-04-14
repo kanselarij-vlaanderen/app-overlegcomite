@@ -29,10 +29,6 @@ defmodule Dispatcher do
     Proxy.forward conn, path, "http://cache/accounts/"
   end
 
-  match "/identifiers/*path" do
-    Proxy.forward conn, path, "http://cache/identifiers/"
-  end
-
   match "/account-groups/*path" do
     Proxy.forward conn, path, "http://cache/account-groups/"
   end

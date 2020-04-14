@@ -45,8 +45,7 @@ defmodule Acl.UserGroups.Config do
   defp account_info_types() do
     [
       "http://xmlns.com/foaf/0.1/Person",
-      "http://xmlns.com/foaf/0.1/OnlineAccount",
-      "http://www.w3.org/ns/adms#Identifier"
+      "http://xmlns.com/foaf/0.1/OnlineAccount"
     ]
   end
 
