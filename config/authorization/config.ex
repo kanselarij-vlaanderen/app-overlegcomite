@@ -69,8 +69,10 @@ defmodule Acl.UserGroups.Config do
 
   def user_groups do
     [
-      # NOTE: Behavior when graph already contains more info than constraints specify, is undefined.
+      # NOTE: Behaviour when graph already contains more info than constraints specify, is undefined.
       # Currently, read access then isn't limited to the specified resource types
+      # For the configuration below this implies that the constraints specified for groups
+      # that only have ":read"-access, are merely there for verbosity.
       %GroupSpec{
         name: "public",
         useage: [:read],
