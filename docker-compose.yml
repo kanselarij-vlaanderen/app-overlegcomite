@@ -128,6 +128,12 @@ services:
     image: kanselarij/oc-distributor:latest
     restart: always
     logging: *default-logging
+  user-info-distribution:
+    image: kanselarij/user-info-distributor:latest
+    ports:
+      - 127.0.0.1:8001:80 # For accessing maintenance endpoints
+    restart: always
+    logging: *default-logging
   sink:
     image: lblod/sink-service:1.0.0
     logging: *default-logging

@@ -1,0 +1,72 @@
+DELETE {
+    GRAPH <http://mu.semte.ch/graphs/public> {
+        ?s ?p ?o .
+    }
+}
+INSERT {
+    GRAPH <http://mu.semte.ch/graphs/account-info> {
+        ?s ?p ?o .
+    }
+}
+WHERE {
+    GRAPH <http://mu.semte.ch/graphs/public> {
+        ?s ?p ?o .
+        ?s a <http://xmlns.com/foaf/0.1/Person> .
+    }
+}
+
+;
+
+DELETE {
+    GRAPH <http://mu.semte.ch/graphs/public> {
+        ?s ?p ?o .
+    }
+}
+INSERT {
+    GRAPH <http://mu.semte.ch/graphs/account-info> {
+        ?s ?p ?o .
+    }
+}
+WHERE {
+    GRAPH <http://mu.semte.ch/graphs/public> {
+        ?s ?p ?o .
+        ?s a <http://xmlns.com/foaf/0.1/OnlineAccount> .
+    }
+}
+
+;
+
+DELETE {
+    GRAPH <http://mu.semte.ch/graphs/public> {
+        ?s ?p ?o .
+    }
+}
+INSERT {
+    GRAPH <http://mu.semte.ch/graphs/account-info> {
+        ?s ?p ?o .
+    }
+}
+WHERE {
+    GRAPH <http://mu.semte.ch/graphs/public> {
+        ?s ?p ?o .
+        ?s a <http://www.w3.org/ns/adms#Identifier> .
+    }
+}
+
+;
+
+DELETE {
+    GRAPH <http://mu.semte.ch/graphs/public> {
+        ?is <http://xmlns.com/foaf/0.1/member> ?io .
+    }
+}
+INSERT {
+    GRAPH <http://mu.semte.ch/graphs/account-info> {
+        ?is <http://xmlns.com/foaf/0.1/member> ?io .
+    }
+}
+WHERE {
+    GRAPH <http://mu.semte.ch/graphs/public> {
+        ?is <http://xmlns.com/foaf/0.1/member> ?io .
+    }
+}

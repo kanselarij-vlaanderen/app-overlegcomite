@@ -1,0 +1,115 @@
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX user: <http://data.kanselarij.vlaanderen.be/id/gebruiker/>
+PREFIX account: <http://data.kanselarij.vlaanderen.be/id/account/>
+PREFIX group: <http://data.kanselarij.vlaanderen.be/id/group/>
+PREFIX mu: <http://mu.semte.ch/vocabularies/core/>
+PREFIX besluit: <http://data.vlaanderen.be/ns/besluit#>
+
+INSERT DATA {
+  GRAPH <http://mu.semte.ch/graphs/public> {
+    user:user a foaf:Person ;
+        mu:uuid "5ab04d46-a578-4e13-802b-7ef0b53cb6bb" ;
+        foaf:firstName "User" ;
+        foaf:familyName "Test" ;
+        dct:identifier "00.00.00-000.01" ;
+        foaf:account account:user .
+
+    account:user a foaf:OnlineAccount ;
+        mu:uuid "5c57db0a-0d48-4d58-9de6-5603d3f5992e" ;
+        foaf:accountServiceHomepage "https://github.com/kanselarij-vlaanderen/mock-login-service" ;
+        dct:identifier "1" .
+
+    group:user foaf:member user:user .
+
+
+    user:admin a foaf:Person ;
+        mu:uuid "beb58e49-5ea1-4824-9b7c-90ff189d914a" ;
+        foaf:firstName "Admin" ;
+        foaf:familyName "Test" ;
+        dct:identifier "00.00.00-000.00" ;
+        foaf:account account:admin .
+
+    account:admin a foaf:OnlineAccount ;
+        mu:uuid "f445824e-69d6-46ff-8803-718137ccbbad" ;
+        foaf:accountServiceHomepage "https://github.com/kanselarij-vlaanderen/mock-login-service" ;
+        dct:identifier "0" .
+
+    group:admin foaf:member user:admin .
+
+
+    user:kanselarij a foaf:Person ;
+        mu:uuid "6ca5b315-fd26-4ef6-9faf-2d8ce21e6c41" ;
+        foaf:firstName "Kanselarij" ;
+        foaf:familyName "Test" ;
+        dct:identifier "00.00.00-000.00" ;
+        foaf:account account:kanselarij .
+
+    account:kanselarij a foaf:OnlineAccount ;
+        mu:uuid "86930340-1be5-4d72-87af-affebfc5b281" ;
+        foaf:accountServiceHomepage "https://github.com/kanselarij-vlaanderen/mock-login-service" ;
+        dct:identifier "2" .
+
+    group:kanselarij foaf:member user:kanselarij .
+
+
+    user:kabinet a foaf:Person ;
+        mu:uuid "deedeedb-bc89-4be3-85e3-20153f088688" ;
+        foaf:firstName "Kabinet" ;
+        foaf:familyName "Test" ;
+        dct:identifier "00.00.00-000.00" ;
+        foaf:account account:kabinet .
+
+    account:kabinet a foaf:OnlineAccount ;
+        mu:uuid "39fbd86f-45d2-41b3-ac21-485e8b285d0e" ;
+        foaf:accountServiceHomepage "https://github.com/kanselarij-vlaanderen/mock-login-service" ;
+        dct:identifier "3" .
+
+    group:kabinet foaf:member user:kabinet .
+
+
+    user:adviesverlener a foaf:Person ;
+        mu:uuid "c228b8ff-bef2-4888-b403-7a1846e0d85c" ;
+        foaf:firstName "Adviesverlener" ;
+        foaf:familyName "Test" ;
+        dct:identifier "00.00.00-000.00" ;
+        foaf:account account:adviesverlener .
+
+    account:adviesverlener a foaf:OnlineAccount ;
+        mu:uuid "0644e559-29b8-4c3c-8e93-3f48a3d8d4ca" ;
+        foaf:accountServiceHomepage "https://github.com/kanselarij-vlaanderen/mock-login-service" ;
+        dct:identifier "4" .
+
+    group:adviesverlener foaf:member user:adviesverlener .
+
+
+    user:administratie a foaf:Person ;
+        mu:uuid "fdb00c6d-7d0f-4d5d-ad7a-f752ab0c0639" ;
+        foaf:firstName "Administratie" ;
+        foaf:familyName "Test" ;
+        dct:identifier "00.00.00-000.00" ;
+        foaf:account account:administratie .
+
+    account:administratie a foaf:OnlineAccount ;
+        mu:uuid "276732ab-af46-443d-ad7a-3613a41533a6" ;
+        foaf:accountServiceHomepage "https://github.com/kanselarij-vlaanderen/mock-login-service" ;
+        dct:identifier "5" .
+
+    group:administratie foaf:member user:administratie .
+
+
+    user:parlement a foaf:Person ;
+        mu:uuid "0f72c871-2b03-4f25-9e8b-0531350a1fa1" ;
+        foaf:firstName "Vlaams Parlement" ;
+        foaf:familyName "Test" ;
+        dct:identifier "00.00.00-000.00" ;
+        foaf:account account:parlement .
+
+    account:parlement a foaf:OnlineAccount ;
+        mu:uuid "e468e31b-3d7f-4bc3-9dfa-24c76a7ef510" ;
+        foaf:accountServiceHomepage "https://github.com/kanselarij-vlaanderen/mock-login-service" ;
+        dct:identifier "6" .
+
+    group:parlement foaf:member user:parlement .
+  }
+}

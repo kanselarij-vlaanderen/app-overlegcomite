@@ -30,5 +30,21 @@ export default [
       gracePeriod: 250,
       ignoreFromSelf: true
     }
+  },
+  {
+    match: {
+      // form of element is {subject, predicate, object}
+      subject: {
+      }
+    },
+    callback: {
+      url: 'http://user-info-distribution/delta',
+      method: 'POST'
+    },
+    options: {
+      resourceFormat: 'v0.0.1',
+      gracePeriod: 5000,
+      ignoreFromSelf: true
+    }
   }
 ];
