@@ -46,7 +46,8 @@ defmodule Acl.UserGroups.Config do
   defp account_info_types() do
     [
       "http://xmlns.com/foaf/0.1/Person",
-      "http://xmlns.com/foaf/0.1/OnlineAccount"
+      "http://xmlns.com/foaf/0.1/OnlineAccount",
+      "http://xmlns.com/foaf/0.1/Group" # ideally only writes on "http://xmlns.com/foaf/0.1/member" predicate
     ]
   end
 
@@ -81,29 +82,15 @@ defmodule Acl.UserGroups.Config do
           %GraphSpec{
             graph: "http://mu.semte.ch/graphs/public",
             constraint: %ResourceConstraint{
-              resource_types: fixed_code_list_types()
+              resource_types: fixed_code_list_types() ++ account_info_types() # mock login account_info_types
             }
           }
         ]
       },
-
+    
       %GroupSpec{
-        name: "admin-r",
-        useage: [:read],
-        access: access_by_role("<http://data.kanselarij.vlaanderen.be/id/group/admin>"),
-        graphs: [
-          %GraphSpec{
-            graph: "http://mu.semte.ch/graphs/admins",
-            constraint: %ResourceConstraint{
-              resource_types: account_info_types()
-            }
-          }
-        ]
-      },
-      
-      %GroupSpec{
-        name: "admin-w",
-        useage: [:write,:read_for_write],
+        name: "admin-user-info",
+        useage: [:read, :write,:read_for_write],
         access: access_by_role("<http://data.kanselarij.vlaanderen.be/id/group/admin>"),
         graphs: [
           %GraphSpec{
