@@ -47,6 +47,7 @@ defmodule Acl.UserGroups.Config do
     [
       "http://xmlns.com/foaf/0.1/Person",
       "http://xmlns.com/foaf/0.1/OnlineAccount",
+      "http://www.w3.org/ns/adms#Identifier",
       "http://xmlns.com/foaf/0.1/Group" # ideally only writes on "http://xmlns.com/foaf/0.1/member" predicate
     ]
   end

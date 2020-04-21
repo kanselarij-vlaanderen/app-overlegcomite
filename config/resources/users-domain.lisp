@@ -10,10 +10,19 @@
                                         :as "group")
              (account                   :via      ,(s-prefix "foaf:account")
                                         :as "account")
+             (identifier                :via      ,(s-prefix "adms:identifier")
+                                        :as "identifier")
              (organization              :via      ,(s-prefix "org:memberOf")
                                         :as "organization")
             )
   :on-path "users"
+)
+
+(define-resource identifier ()
+  :class (s-prefix "adms:Identifier")
+  :resource-base (s-url "http://kanselarij.vo.data.gift/id/identificator/")
+  :properties `((:notation            :string   ,(s-prefix "skos:notation")))
+  :on-path "identifiers"
 )
 
 (define-resource account ()
