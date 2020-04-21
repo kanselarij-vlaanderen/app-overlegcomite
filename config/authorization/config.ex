@@ -263,6 +263,20 @@ defmodule Acl.UserGroups.Config do
         ]
       },
       
+      %GroupSpec{
+        name: "rightless-user",
+        useage: [:read],
+        access: access_by_role("<http://data.kanselarij.vlaanderen.be/id/group/user>"),
+        graphs: [
+          %GraphSpec{
+            graph: "http://mu.semte.ch/graphs/rightless-user",
+            constraint: %ResourceConstraint{
+              resource_types: account_info_types()
+            }
+          }
+        ]
+      },
+      
       # // CLEANUP
       #
       %GraphCleanup{

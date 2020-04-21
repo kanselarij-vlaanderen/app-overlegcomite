@@ -23,7 +23,7 @@ services:
     logging: *default-logging
     restart: always
   login:
-    image: kanselarij/acmidm-login-service:1.1.0
+    image: kanselarij/acmidm-login-service:1.2.1
     environment:
       MU_APPLICATION_AUTH_ALLOW_NO_ROLE_CLAIM: "true"
       MU_APPLICATION_AUTH_DEFAULT_GROUP_URI: "http://data.kanselarij.vlaanderen.be/id/group/user"
@@ -32,6 +32,7 @@ services:
       LOG_SINK_URL: "http://sink"
       MU_APPLICATION_RESOURCE_BASE_URI: "http://kanselarij.vo.data.gift/"
       REQUEST_TIMEOUT: 5000
+      MU_APPLICATION_AUTH_DEFAULT_GROUP_URI: "http://data.kanselarij.vlaanderen.be/id/group/user"
     logging: *default-logging
     restart: always
   migration:
