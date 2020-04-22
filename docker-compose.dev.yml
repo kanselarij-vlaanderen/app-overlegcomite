@@ -25,9 +25,6 @@ services:
   elasticsearch:
     ports:
       - 127.0.0.1:9200:9200
-  login:
-    entrypoint: "echo 'service disabled'"
-    restart: "no"
   mocklogin:
     image: kanselarij/mock-login-service:1.0.0
     volumes:
