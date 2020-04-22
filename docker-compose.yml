@@ -7,7 +7,7 @@ x-logging:
     max-file: "3"
 services:
   frontend:
-    image: kanselarij/frontend-overlegcomite:1.4.1
+    image: kanselarij/frontend-overlegcomite:1.5.0
     links:
       - identifier:backend
     restart: always
@@ -23,7 +23,7 @@ services:
     logging: *default-logging
     restart: always
   login:
-    image: kanselarij/acmidm-login-service:1.2.1
+    image: kanselarij/acmidm-login-service:1.3.0
     environment:
       MU_APPLICATION_AUTH_ALLOW_NO_ROLE_CLAIM: "true"
       MU_APPLICATION_AUTH_DEFAULT_GROUP_URI: "http://data.kanselarij.vlaanderen.be/id/group/user"
@@ -131,7 +131,7 @@ services:
     restart: always
     logging: *default-logging
   user-info-distribution:
-    image: kanselarij/user-info-distributor:latest
+    image: kanselarij/user-info-distributor:0.1.0
     ports:
       - 127.0.0.1:8001:80 # For accessing maintenance endpoints
     restart: always
