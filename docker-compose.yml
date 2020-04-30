@@ -132,7 +132,7 @@ services:
     restart: always
     logging: *default-logging
   user-info-distribution:
-    image: kanselarij/user-info-distributor:0.1.0
+    image: kanselarij/user-info-distributor:0.1.1
     ports:
       - 127.0.0.1:8001:80 # For accessing maintenance endpoints
     restart: always
