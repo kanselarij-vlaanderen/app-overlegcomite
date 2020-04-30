@@ -5,11 +5,13 @@
   "update_wait_interval_minutes": 2,
   "automatic_index_updates": true,
   "eager_indexing_groups": [
-    [{"name": "admin-rw", "variables" : []}, {"variables":[], "name":"clean"}, {"variables":[], "name":"public"}],
+    [{"name": "admin-rw", "variables" : []}, {"name": "admin-user-info", "variables":[]}, {"variables":[], "name":"clean"}, {"variables":[], "name":"public"}],
     [{"name": "kanselarij", "variables" : []}, {"variables":[], "name":"clean"}, {"variables":[], "name":"public"}],
     [{"name": "minister", "variables" : []}, {"variables":[], "name":"clean"}, {"variables":[], "name":"public"}],
-    [{"name": "kabinet+adviesverlener", "variables" : []}, {"variables":[], "name":"clean"}, {"variables":[], "name":"public"}],
-    [{"name": "administratie+parlement", "variables" : []}, {"variables":[], "name":"clean"}, {"variables":[], "name":"public"}]
+    [{"name": "kabinet+adviesverlener", "variables" : []}, {"name": "kabinet", "variables" : []}, {"variables":[], "name":"clean"}, {"variables":[], "name":"public"}],
+    [{"name": "kabinet+adviesverlener", "variables" : []}, {"name": "adviesverlener", "variables" : []}, {"variables":[], "name":"clean"}, {"variables":[], "name":"public"}],
+    [{"name": "administratie+parlement", "variables" : []}, {"name": "administratie", "variables" : []}, {"variables":[], "name":"clean"}, {"variables":[], "name":"public"}],
+    [{"name": "administratie+parlement", "variables" : []}, {"name": "parlement", "variables" : []}, {"variables":[], "name":"clean"}, {"variables":[], "name":"public"}]
   ],
   "attachments_path_base": "/data/",
   "eager_indexing_sparql_query": false,
