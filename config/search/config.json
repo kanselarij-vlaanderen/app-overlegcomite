@@ -76,6 +76,12 @@
             "analyzer": "dutchanalyzer",
             "search_analyzer": "dutchanalyzer",
             "term_vector": "with_positions_offsets_payloads"
+          },
+          "data.attachment.content": {
+            "type": "text",
+            "analyzer": "dutchanalyzer",
+            "search_analyzer": "dutchanalyzer",
+            "term_vector": "with_positions_offsets_payloads"
           }
         }
       }
@@ -118,6 +124,12 @@
             "type": "date"
           },
           "attachment.content": {
+            "type": "text",
+            "analyzer": "dutchanalyzer",
+            "search_analyzer": "dutchanalyzer",
+            "term_vector": "with_positions_offsets_payloads"
+          },
+          "data.attachment.content": {
             "type": "text",
             "analyzer": "dutchanalyzer",
             "search_analyzer": "dutchanalyzer",
