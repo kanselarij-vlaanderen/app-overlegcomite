@@ -35,7 +35,7 @@ defmodule Dispatcher do
   end
 
 
-  get "/files/:id/download/*path", @any do
+  get "/files/:id/download", @any do
     Proxy.forward conn, [], "http://range-file/files/" <> id <> "/download/"
   end
 
@@ -70,11 +70,11 @@ defmodule Dispatcher do
   end
 
 
-  match "/meetings/:id/agenda/distribute/*path", @any do
+  match "/meetings/:id/agenda/distribute", @any do
     Proxy.forward conn, [], "http://distribution/meetings/" <> id <> "/agenda/distribute/"
   end
 
-  match "/meetings/:id/notifications/distribute/*path", @any do
+  match "/meetings/:id/notifications/distribute", @any do
     Proxy.forward conn, [], "http://distribution/meetings/" <> id <> "/notifications/distribute/"
   end
 
@@ -97,15 +97,15 @@ defmodule Dispatcher do
   end
 
 
-  match "/agendaitems-by-notification/search/*path", @any do
-    Proxy.forward conn, path, "http://search/agendaitems-by-notification/search/"
+  match "/agendaitems-by-notification/search", @any do
+    Proxy.forward conn, [], "http://search/agendaitems-by-notification/search/"
   end
 
-  match "/agendaitems-by-documents/search/*path", @any do
-    Proxy.forward conn, path, "http://search/agendaitems-by-documents/search/"
+  match "/agendaitems-by-documents/search", @any do
+    Proxy.forward conn, [], "http://search/agendaitems-by-documents/search/"
   end
 
-  match "_", %{ last_call: true } do
+  match "/_", %{ last_call: true } do
     send_resp( conn, 404, "Route not found.  See config/dispatcher.ex" )
   end
 
