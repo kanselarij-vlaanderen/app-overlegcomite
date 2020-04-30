@@ -93,10 +93,11 @@ services:
     logging: *default-logging
     restart: always
   search:
-    image: semtech/mu-search:0.6.0-beta.7
+    image: semtech/mu-search:0.6.0-beta.11
     environment:
       MU_SPARQL_ENDPOINT: "http://database:8890/sparql"
-      NUMBER_OF_THREADS: "1" # Means 8 in reality due to quirk (0.6.0-beta.7)
+      JRUBY_OPTIONS: "-J-Xmx12g" # overwrite for development
+      LOG_LEVEL: "info"
     volumes:
       - ./config/search:/config
       - ./data/files:/data
