@@ -1,119 +1,109 @@
 defmodule Dispatcher do
-  use Plug.Router
+  use Matcher
 
-  def start(_argv) do
-    port = 80
-    IO.puts "Starting Plug with Cowboy on port #{port}"
-    Plug.Adapters.Cowboy.http __MODULE__, [], port: port
-    :timer.sleep(:infinity)
-  end
+  @any %{}
 
-  plug Plug.Logger
-  plug :match
-  plug :dispatch
-
-  match "/mock/sessions/*path" do
+  match "/mock/sessions/*path", @any do
     Proxy.forward conn, path, "http://mocklogin/sessions/"
   end
   
-  match "/sessions/*path" do
+  match "/sessions/*path", @any do
     Proxy.forward conn, path, "http://login/sessions/"
   end
   
   
-  match "/users/*path" do
+  match "/users/*path", @any do
     Proxy.forward conn, path, "http://cache/users/"
   end
 
-  match "/identifiers/*path" do
+  match "/identifiers/*path", @any do
     Proxy.forward conn, path, "http://cache/identifiers/"
   end
 
-  match "/accounts/*path" do
+  match "/accounts/*path", @any do
     Proxy.forward conn, path, "http://cache/accounts/"
   end
 
-  match "/account-groups/*path" do
+  match "/account-groups/*path", @any do
     Proxy.forward conn, path, "http://cache/account-groups/"
   end
 
-  match "/organizations/*path" do
+  match "/organizations/*path", @any do
     Proxy.forward conn, path, "http://cache/organizations/"
   end
 
 
-  get "/files/:id/download/*path" do
-    Proxy.forward conn, path, "http://range-file/files/" <> id <> "/download/"
+  get "/files/:id/download/*path", @any do
+    Proxy.forward conn, [], "http://range-file/files/" <> id <> "/download/"
   end
 
-  post "/files/*path" do
+  post "/files/*path", @any do
     Proxy.forward conn, path, "http://file/files/"
   end
 
-  delete "/files/*path" do
+  delete "/files/*path", @any do
     Proxy.forward conn, path, "http://file/files/"
   end
 
-  match "/files/*path" do
+  match "/files/*path", @any do
     Proxy.forward conn, path, "http://cache/files/"
   end
 
 
-  match "/documents/*path" do
+  match "/documents/*path", @any do
     Proxy.forward conn, path, "http://cache/documents/"
   end
 
-  match "/document-versions/*path" do
+  match "/document-versions/*path", @any do
     Proxy.forward conn, path, "http://cache/document-versions/"
   end
 
-  match "/document-types/*path" do
+  match "/document-types/*path", @any do
     Proxy.forward conn, path, "http://cache/document-types/"
   end
 
 
-  match "/access-levels/*path" do
+  match "/access-levels/*path", @any do
     Proxy.forward conn, path, "http://cache/access-levels/"
   end
 
 
-  match "/meetings/:id/agenda/distribute/*path" do
-    Proxy.forward conn, path, "http://distribution/meetings/" <> id <> "/agenda/distribute/"
+  match "/meetings/:id/agenda/distribute/*path", @any do
+    Proxy.forward conn, [], "http://distribution/meetings/" <> id <> "/agenda/distribute/"
   end
 
-  match "/meetings/:id/notifications/distribute/*path" do
-    Proxy.forward conn, path, "http://distribution/meetings/" <> id <> "/notifications/distribute/"
+  match "/meetings/:id/notifications/distribute/*path", @any do
+    Proxy.forward conn, [], "http://distribution/meetings/" <> id <> "/notifications/distribute/"
   end
 
   
-  match "/meetings/*path" do
+  match "/meetings/*path", @any do
     Proxy.forward conn, path, "http://cache/meetings/"
   end
 
-  match "/agendaitems/*path" do
+  match "/agendaitems/*path", @any do
     Proxy.forward conn, path, "http://cache/agendaitems/"
   end
 
-  match "/cases/*path" do
+  match "/cases/*path", @any do
     Proxy.forward conn, path, "http://cache/cases/"
   end
 
 
-  match "/government-bodies/*path" do
+  match "/government-bodies/*path", @any do
     Proxy.forward conn, path, "http://cache/government-bodies/"
   end
 
 
-  match "/agendaitems-by-notification/search/*path" do
+  match "/agendaitems-by-notification/search/*path", @any do
     Proxy.forward conn, path, "http://search/agendaitems-by-notification/search/"
   end
 
-  match "/agendaitems-by-documents/search/*path" do
+  match "/agendaitems-by-documents/search/*path", @any do
     Proxy.forward conn, path, "http://search/agendaitems-by-documents/search/"
   end
 
-
-  match _ do
+  match "_", %{ last_call: true } do
     send_resp( conn, 404, "Route not found.  See config/dispatcher.ex" )
   end
 
