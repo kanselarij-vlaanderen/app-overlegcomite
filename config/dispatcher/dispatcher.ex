@@ -1,6 +1,8 @@
 defmodule Dispatcher do
   use Matcher
 
+  define_accept_types []
+
   @any %{}
 
   match "/mock/sessions/*path", @any do
