@@ -14,4 +14,6 @@ config/migrations/*
 # Files
 /data/files/*
 
+# Search
+config/search/*.store
 /data/elasticsearch/*
