@@ -9,8 +9,14 @@ services:
   database:
     environment:
       LOG_OUTGOING_SPARQL_QUERIES: "true"
+      INSPECT_OUTGOING_SPARQL_QUERIES: "true"
       LOG_INCOMING_SPARQL_QUERIES: "true"
+      INSPECT_INCOMING_SPARQL_QUERIES: "true"
       LOG_ACCESS_RIGHTS: "true"
+      INSPECT_ACCESS_RIGHTS_PROCESSING: "true"
+      LOG_DELTA_MESSAGES: "true"
+      LOG_DELTA_CLIENT_COMMUNICATION: "true"
+      LOG_TEMPLATE_MATCHER_PERFORMANCE: "false"
   kibana:
     image: docker.elastic.co/kibana/kibana:7.2.0
     volumes:
