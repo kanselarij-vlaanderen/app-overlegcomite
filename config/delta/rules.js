@@ -46,5 +46,20 @@ export default [
       gracePeriod: 5000,
       ignoreFromSelf: true
     }
+  },
+  {
+    match: {
+      predicate: { type: 'uri', value: 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type' },
+      object: { type: 'uri', value: 'http://mu.semte.ch/vocabularies/ext/oc/Meeting' }
+    },
+    callback: {
+      url: 'http://distribution/delta',
+      method: 'POST'
+    },
+    options: {
+      resourceFormat: 'v0.0.1',
+      gracePeriod: 5000,
+      ignoreFromSelf: true
+    }
   }
 ];
