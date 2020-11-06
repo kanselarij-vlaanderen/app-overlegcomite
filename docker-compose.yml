@@ -17,7 +17,7 @@ services:
     logging: *default-logging
     restart: always
   dispatcher:
-    image: semtech/mu-dispatcher:2.0.0-beta.2
+    image: semtech/mu-dispatcher:2.1.0-beta.1
     volumes:
       - ./config/dispatcher:/config
     logging: *default-logging
@@ -38,14 +38,14 @@ services:
     logging: *default-logging
     restart: always
   migration:
-    image: semtech/mu-migrations-service:0.5.1
+    image: semtech/mu-migrations-service:0.7.0
     volumes:
       - ./config/migrations:/data/migrations
     environment:
       MU_SPARQL_ENDPOINT: "http://triplestore:8890/sparql"
     restart: always
   database:
-    image: semtech/mu-authorization:0.6.0-beta.2
+    image: semtech/mu-authorization:0.6.0-beta.5
     environment:
       MU_SPARQL_ENDPOINT: "http://triplestore:8890/sparql"
       # LOG_OUTGOING_SPARQL_QUERIES: "true"
@@ -81,7 +81,7 @@ services:
     logging: *default-logging
     restart: always
   file:
-    image: semtech/mu-file-service:3.1.0
+    image: semtech/mu-file-service:3.1.2
     volumes:
       - ./data/files:/share
     logging: *default-logging
@@ -93,10 +93,11 @@ services:
     logging: *default-logging
     restart: always
   search:
-    image: semtech/mu-search:0.6.0-beta.11
+    image: semtech/mu-search:0.6.3
     environment:
       MU_SPARQL_ENDPOINT: "http://database:8890/sparql"
       JRUBY_OPTIONS: "-J-Xmx12g" # overwrite for development
+      NUMBER_OF_THREADS: "6"
       LOG_LEVEL: "info"
     volumes:
       - ./config/search:/config
