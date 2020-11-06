@@ -130,6 +130,9 @@ services:
     logging: *default-logging
   distribution:
     image: kanselarij/oc-distributor:0.2.1
+    environment:
+      LOG_SPARQL_ALL: "false"
+      DEBUG_AUTH_HEADERS: "false"
     restart: always
     logging: *default-logging
   user-info-distribution:

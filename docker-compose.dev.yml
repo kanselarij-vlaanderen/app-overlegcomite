@@ -29,3 +29,7 @@ services:
     volumes:
       - ./config/mocklogin:/config
     logging: *default-logging
+  distribution:
+    environment:
+      LOG_SPARQL_ALL: "true"
+      DEBUG_AUTH_HEADERS: "true"
