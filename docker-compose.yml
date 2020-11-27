@@ -7,7 +7,7 @@ x-logging:
     max-file: "3"
 services:
   frontend:
-    image: kanselarij/frontend-overlegcomite:1.7.5
+    image: kanselarij/frontend-overlegcomite:1.7.6
     links:
       - identifier:backend
     restart: always
