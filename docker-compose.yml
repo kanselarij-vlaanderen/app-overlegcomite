@@ -30,7 +30,7 @@ services:
       MU_APPLICATION_AUTH_USERID_CLAIM: "vo_id"
       DEBUG_LOG_TOKENSETS: "true"
       LOG_SINK_URL: "http://sink"
-      MU_APPLICATION_AUTH_ROLE_CLAIM: "dkb_kaleidos_rol_3d"
+      MU_APPLICATION_AUTH_ROLE_CLAIM: "dkb_overlegcomite_rol_3d"
       MU_APPLICATION_RESOURCE_BASE_URI: "http://kanselarij.vo.data.gift/"
       REQUEST_TIMEOUT: 5000
       USER_GRAPH_URI: "http://mu.semte.ch/graphs/account-info"
