@@ -5,6 +5,9 @@ x-logging:
     max-size: "10m"
     max-file: "3"
 services:
+  identifier:
+    ports:
+      - 80:80
   database:
     environment:
       LOG_OUTGOING_SPARQL_QUERIES: "true"
@@ -16,6 +19,9 @@ services:
       LOG_DELTA_MESSAGES: "true"
       LOG_DELTA_CLIENT_COMMUNICATION: "true"
       LOG_TEMPLATE_MATCHER_PERFORMANCE: "false"
+  triplestore:
+    ports:
+      - 8890:8890
   kibana:
     image: docker.elastic.co/kibana/kibana:7.2.0
     volumes:
