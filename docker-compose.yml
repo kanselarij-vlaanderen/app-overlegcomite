@@ -54,21 +54,11 @@ services:
     labels:
       - "logging=true"
   database:
-    image: semtech/mu-authorization:0.6.0-beta.5
+    image: semtech/sparql-parser:0.0.15
     environment:
-      MU_SPARQL_ENDPOINT: "http://triplestore:8890/sparql"
-      LOG_OUTGOING_SPARQL_QUERIES: "true"
-      INSPECT_OUTGOING_SPARQL_QUERIES: "false"
-      LOG_INCOMING_SPARQL_QUERIES: "true"
-      INSPECT_INCOMING_SPARQL_QUERIES: "false"
-      LOG_ACCESS_RIGHTS: "false"
-      INSPECT_ACCESS_RIGHTS_PROCESSING: "false"
-      LOG_DELTA_MESSAGES: "false"
-      LOG_DELTA_CLIENT_COMMUNICATION: "false"
-      LOG_TEMPLATE_MATCHER_PERFORMANCE: "false"
-      DATABASE_COMPATIBILITY: "Virtuoso"
     volumes:
       - ./config/authorization:/config
+      - ./data/authorization:/data
     logging: *default-logging
     restart: always
     labels:
