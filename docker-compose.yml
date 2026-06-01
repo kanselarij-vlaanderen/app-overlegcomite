@@ -14,13 +14,13 @@ services:
     labels:
       - "logging=true"
   identifier:
-    image: semtech/mu-identifier:1.8.1
+    image: semtech/mu-identifier:1.11.0
     logging: *default-logging
     restart: always
     labels:
       - "logging=true"
   dispatcher:
-    image: semtech/mu-dispatcher:2.1.0-beta.1
+    image: semtech/mu-dispatcher:2.1.1
     volumes:
       - ./config/dispatcher:/config
     logging: *default-logging
@@ -44,7 +44,7 @@ services:
     labels:
       - "logging=true"
   migration:
-    image: semtech/mu-migrations-service:0.7.0
+    image: semtech/mu-migrations-service:0.9.0
     volumes:
       - ./config/migrations:/data/migrations
     environment:
@@ -86,7 +86,7 @@ services:
     labels:
       - "logging=true"
   resource:
-    image: semtech/mu-cl-resources:1.19.0
+    image: semtech/mu-cl-resources:1.27.2
     environment:
       CACHE_CLEAR_PATH: "http://cache/.mu/clear-keys"
     volumes:
@@ -96,7 +96,7 @@ services:
     labels:
       - "logging=true"
   file:
-    image: semtech/mu-file-service:3.1.2
+    image: semtech/mu-file-service:3.5.0
     volumes:
       - ./data/files:/share
     logging: *default-logging
@@ -137,7 +137,7 @@ services:
     labels:
       - "logging=true"
   deltanotifier:
-    image: semtech/mu-delta-notifier:0.1.0
+    image: semtech/mu-delta-notifier:0.4.0
     volumes:
         - ./config/delta:/config
     logging: *default-logging
@@ -145,7 +145,7 @@ services:
     labels:
       - "logging=true"
   cache:
-    image: semtech/mu-cache:2.0.1
+    image: semtech/mu-cache:2.1.0
     links:
       - resource:backend
     logging: *default-logging
