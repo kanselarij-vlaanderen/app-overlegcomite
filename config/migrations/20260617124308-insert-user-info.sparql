@@ -1,0 +1,203 @@
+PREFIX mu: <http://mu.semte.ch/vocabularies/core/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX adms: <http://www.w3.org/ns/adms#>
+PREFIX org: <http://www.w3.org/ns/org#>
+PREFIX dct: <http://purl.org/dc/terms/>
+
+PREFIX user: <http://data.kanselarij.vlaanderen.be/id/gebruiker/>
+PREFIX account: <http://data.kanselarij.vlaanderen.be/id/account/>
+PREFIX organization: <http://data.kanselarij.vlaanderen.be/id/organisatie/>
+PREFIX membership: <http://data.kanselarij.vlaanderen.be/id/lidmaatschap/>
+
+INSERT {
+	GRAPH <http://mu.semte.ch/graphs/public> {
+
+		# Admin
+		user:admin a foaf:Person ;
+			mu:uuid "d7eb7f67-e9f1-44b2-9c4f-488df6374c35" ;
+			foaf:firstName "Admin" ;
+			foaf:familyName "Test" ;
+			dct:identifier "00.00.00-000.00" ;
+			foaf:account account:admin .
+		account:admin a foaf:OnlineAccount ;
+			mu:uuid "2a8c3f58-bd53-4235-aa8c-4a07d9525bea" ;
+			foaf:accountName "Admin" ;
+			foaf:accountServiceHomepage "https://github.com/kanselarij-vlaanderen/mock-login-service" .
+		organization:admin a foaf:Organization ;
+			mu:uuid "2fd77de0-19dc-4f99-81a7-887dbdfa35ce" ;
+			skos:prefLabel "Admin" ;
+			org:identifier "ADMIN" .
+		membership:admin a org:Membership ;
+			mu:uuid "db5a8b37-5a2f-45a5-aa41-d015e64f435e" ;
+			org:member user:admin ;
+			org:organization organization:admin .
+
+		# Secretarie
+		user:kanselarij a foaf:Person ;
+			mu:uuid "8a059cda-b528-4f6c-98a5-b3d154aca97c" ;
+			foaf:firstName "Secretarie" ;
+			foaf:familyName "Test" ;
+			dct:identifier "00.00.00-000.00" ;
+			foaf:account account:kanselarij .
+		account:kanselarij a foaf:OnlineAccount ;
+			mu:uuid "c4329d2d-d9c5-4659-b869-3fed037dbe85" ;
+			foaf:accountName "Secretarie" ;
+			foaf:accountServiceHomepage "https://github.com/kanselarij-vlaanderen/mock-login-service" .
+		organization:kanselarij a foaf:Organization ;
+			mu:uuid "c92d1610-2b1e-46b3-9599-cf92be0d888a" ;
+			skos:prefLabel "Secretarie" ;
+			org:identifier "OVO000032" .
+		membership:kanselarij a org:Membership ;
+			mu:uuid "2eb2fd44-8a3f-42e5-92fa-10c344119882" ;
+			org:member user:kanselarij ;
+			org:organization organization:kanselarij .
+
+		# Minister
+		user:minister a foaf:Person ;
+			mu:uuid "850a730a-6bd2-4188-83a9-7f27ed5a1fa9" ;
+			foaf:firstName "Minister" ;
+			foaf:familyName "Test" ;
+			dct:identifier "00.00.00-000.00" ;
+			foaf:account account:minister .
+		account:minister a foaf:OnlineAccount ;
+			mu:uuid "e7c939d7-310d-4bcb-b303-9173dc1e9ae4" ;
+			foaf:accountName "Minister" ;
+			foaf:accountServiceHomepage "https://github.com/kanselarij-vlaanderen/mock-login-service" .
+		organization:minister a foaf:Organization ;
+			mu:uuid "cee0b5d9-87cd-4b44-aff8-208510fedc1e" ;
+			skos:prefLabel "Minister" ;
+			# TODO: verify OVO
+			org:identifier "OVO001533" .
+		membership:minister a org:Membership ;
+			mu:uuid "5c295749-2f10-4d5e-b2af-cdf6bc6ce2dd" ;
+			org:member user:minister ;
+			org:organization organization:minister .
+
+		# Kabinet
+		user:kabinet a foaf:Person ;
+			mu:uuid "7847c1ab-93a1-40ac-af1f-c8161f91cbbe" ;
+			foaf:firstName "Kabinet" ;
+			foaf:familyName "Test" ;
+			dct:identifier "00.00.00-000.00" ;
+			foaf:account account:kabinet .
+		account:kabinet a foaf:OnlineAccount ;
+			mu:uuid "10bd5741-6a9f-4870-ac23-fc4d5b1dfcc9" ;
+			foaf:accountName "Kabinet" ;
+			foaf:accountServiceHomepage "https://github.com/kanselarij-vlaanderen/mock-login-service" .
+		organization:kabinet a foaf:Organization ;
+			mu:uuid "2044bfc6-be2e-4d1c-8c74-e06c14b4d38b" ;
+			skos:prefLabel "Kabinet" ;
+			# TODO: verify OVO
+			org:identifier " OVO027238" .
+		membership:kabinet a org:Membership ;
+			mu:uuid "0d245d5b-85b0-40c9-9022-83cb2dcd954a" ;
+			org:member user:kabinet ;
+			org:organization organization:kabinet .
+
+		# Intern Overheid
+		user:administratie a foaf:Person ;
+			mu:uuid "1b114f7e-2e85-45ee-94bf-e21daeadbc92" ;
+			foaf:firstName "Intern Overheid" ;
+			foaf:familyName "Test" ;
+			dct:identifier "00.00.00-000.00" ;
+			foaf:account account:administratie .
+		account:administratie a foaf:OnlineAccount ;
+			mu:uuid "5654ee07-2516-4d98-af6b-4b2f3c3da31c" ;
+			foaf:accountName "Intern Overheid" ;
+			foaf:accountServiceHomepage "https://github.com/kanselarij-vlaanderen/mock-login-service" .
+		organization:administratie a foaf:Organization ;
+			mu:uuid "e5e88692-9af2-43e1-8325-049760f363c8" ;
+			skos:prefLabel "Intern Overheid" ;
+			# TODO: Verify OVO, #1???
+			org:identifier "OVO000001" .
+		membership:administratie a org:Membership ;
+			mu:uuid "1338fd71-ce91-49d1-a54c-3e7406a39798" ;
+			org:member user:administratie ;
+			org:organization organization:administratie .
+
+		# Adviesverlener
+		user:adviesverlener a foaf:Person ;
+			mu:uuid "dd85cbcf-8f56-48d3-9dbb-748878bb67ff" ;
+			foaf:firstName "Adviesverlener" ;
+			foaf:familyName "Test" ;
+			dct:identifier "00.00.00-000.00" ;
+			foaf:account account:adviesverlener .
+		account:adviesverlener a foaf:OnlineAccount ;
+			mu:uuid "bc777e84-fcb1-4b02-a2ed-674cc4c5efab" ;
+			foaf:accountName "Adviesverlener" ;
+			foaf:accountServiceHomepage "https://github.com/kanselarij-vlaanderen/mock-login-service" .
+		organization:adviesverlener a foaf:Organization ;
+			mu:uuid "9f0f6fbc-d46c-4329-aea6-e1c8b34ee812" ;
+			skos:prefLabel "Adviesverlener" ;
+			# TODO: Verify OVO
+			org:identifier "OVO001899" .
+		membership:adviesverlener a org:Membership ;
+			mu:uuid "d5e222a3-c74d-46a8-9e52-7f3fd528327d" ;
+			org:member user:adviesverlener ;
+			org:organization organization:adviesverlener .
+
+		# Vlaams Parlement
+		user:parlement a foaf:Person ;
+			mu:uuid "d7a863fb-dc7c-451e-be88-9aae32582535" ;
+			foaf:firstName "Vlaams Parlement" ;
+			foaf:familyName "Test" ;
+			dct:identifier "00.00.00-000.00" ;
+			foaf:account account:parlement .
+		account:parlement a foaf:OnlineAccount ;
+			mu:uuid "8ef13489-b0e3-4c85-b63c-79fd2c3e2809" ;
+			foaf:accountName "Vlaams Parlement" ;
+			foaf:accountServiceHomepage "https://github.com/kanselarij-vlaanderen/mock-login-service" .
+		organization:parlement a foaf:Organization ;
+			mu:uuid "ee1928a6-94fa-4b63-9e1e-a4af3aa83cd7" ;
+			skos:prefLabel "Vlaams Parlement" ;
+			org:identifier "OVO000617" .
+		membership:parlement a org:Membership ;
+			mu:uuid "62d8094d-e23e-413e-92d9-9baab0d32242" ;
+			org:member user:parlement ;
+			org:organization organization:parlement .
+
+	}
+	GRAPH <http://mu.semte.ch/graphs/system/users> {
+
+		# Admin
+		user:admin adms:status ?status_allowed .
+		organization:admin adms:status ?status_allowed .
+		membership:admin adms:status ?status_allowed .
+
+		# Secretarie
+		user:kanselarij adms:status ?status_allowed .
+		organization:kanselarij adms:status ?status_allowed .
+		membership:kanselarij adms:status ?status_allowed .
+
+		# Minister
+		user:minister adms:status ?status_allowed .
+		organization:minister adms:status ?status_allowed .
+		membership:minister adms:status ?status_allowed .
+
+		# Kabinet
+		user:kabinet adms:status ?status_allowed .
+		organization:kabinet adms:status ?status_allowed .
+		membership:kabinet adms:status ?status_allowed .
+
+		# Intern Overheid
+		user:administratie adms:status ?status_allowed .
+		organization:administratie adms:status ?status_allowed .
+		membership:administratie adms:status ?status_allowed .
+
+		# Adviesverlener
+		user:adviesverlener adms:status ?status_allowed .
+		organization:adviesverlener adms:status ?status_allowed .
+		membership:adviesverlener adms:status ?status_allowed .
+
+		# Vlaams Parlement
+		user:parlement adms:status ?status_allowed .
+		organization:parlement adms:status ?status_allowed .
+		membership:parlement adms:status ?status_allowed .
+	}
+} WHERE {
+	BIND(<http://themis.vlaanderen.be/id/concept/43ba4953-3484-4ec7-9741-6e709befc531> as ?status_allowed)
+}
+
+
+# ACCESS_ALLOWED_STATUS_URI = 'http://themis.vlaanderen.be/id/concept/43ba4953-3484-4ec7-9741-6e709befc531'
+# ACCESS_BLOCKED_STATUS_URI = 'http://themis.vlaanderen.be/id/concept/ffd0d21a-3beb-44c4-b3ff-06fe9561282a'

@@ -32,37 +32,37 @@
   (format nil "PREFIX session: <http://mu.semte.ch/vocabularies/session/>
               PREFIX foaf: <http://xmlns.com/foaf/0.1/>
               SELECT ?group_uri WHERE {
-                <SESSION_ID> session:account / ^foaf:account / ^foaf:member ?group_uri .
-                VALUES ?group_uri { ~a }
+                <SESSION_ID> session:account / ^foaf:account / ^org:member / org:organization ?organization_uri .
+                VALUES ?organization_uri { ~a }
               } LIMIT 1"
               group-uris))
 
 (supply-allowed-group "public")
 
 (supply-allowed-group "admin"
-  :query (access-by-role-query "<http://data.kanselarij.vlaanderen.be/id/group/admin>"))
+  :query (access-by-role-query "<http://data.kanselarij.vlaanderen.be/id/organisatie/admin>"))
 (supply-allowed-group "kanselarij"
-  :query (access-by-role-query "<http://data.kanselarij.vlaanderen.be/id/group/kanselarij>"))
+  :query (access-by-role-query "<http://data.kanselarij.vlaanderen.be/id/organisatie/kanselarij>"))
 (supply-allowed-group "minister"
-  :query (access-by-role-query "<http://data.kanselarij.vlaanderen.be/id/group/minister>"))
+  :query (access-by-role-query "<http://data.kanselarij.vlaanderen.be/id/organisatie/minister>"))
 (supply-allowed-group "kabinet"
-  :query (access-by-role-query "<http://data.kanselarij.vlaanderen.be/id/group/kabinet>"))
+  :query (access-by-role-query "<http://data.kanselarij.vlaanderen.be/id/organisatie/kabinet>"))
 (supply-allowed-group "adviesverlener"
-  :query (access-by-role-query "<http://data.kanselarij.vlaanderen.be/id/group/adviesverlener>"))
+  :query (access-by-role-query "<http://data.kanselarij.vlaanderen.be/id/organisatie/adviesverlener>"))
 (supply-allowed-group "kabinet-adviesverlener"
   :query (access-by-role-query
-    "<http://data.kanselarij.vlaanderen.be/id/group/kabinet>
-    <http://data.kanselarij.vlaanderen.be/id/group/adviesverlener>"))
+    "<http://data.kanselarij.vlaanderen.be/id/organisatie/kabinet>
+    <http://data.kanselarij.vlaanderen.be/id/organisatie/adviesverlener>"))
 (supply-allowed-group "administratie"
-  :query (access-by-role-query "<http://data.kanselarij.vlaanderen.be/id/group/administratie>"))
+  :query (access-by-role-query "<http://data.kanselarij.vlaanderen.be/id/organisatie/administratie>"))
 (supply-allowed-group "parlement"
-  :query (access-by-role-query "<http://data.kanselarij.vlaanderen.be/id/group/parlement>"))
+  :query (access-by-role-query "<http://data.kanselarij.vlaanderen.be/id/organisatie/parlement>"))
 (supply-allowed-group "administratie-parlement"
   :query (access-by-role-query
-    "<http://data.kanselarij.vlaanderen.be/id/group/administratie>
-    <http://data.kanselarij.vlaanderen.be/id/group/parlement>"))
+    "<http://data.kanselarij.vlaanderen.be/id/organisatie/administratie>
+    <http://data.kanselarij.vlaanderen.be/id/organisatie/parlement>"))
 (supply-allowed-group "user"
-  :query (access-by-role-query "<http://data.kanselarij.vlaanderen.be/id/group/user>"))
+  :query (access-by-role-query "<http://data.kanselarij.vlaanderen.be/id/organisatie/user>"))
 
 (define-graph public ("http://mu.semte.ch/graphs/public")
   ;; Fixed code list types

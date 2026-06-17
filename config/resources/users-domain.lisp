@@ -3,44 +3,42 @@
   :resource-base (s-url "http://kanselarij.vo.data.gift/id/gebruikers/")
   :properties `((:first-name            :string   ,(s-prefix "foaf:firstName"))
                 (:last-name             :string   ,(s-prefix "foaf:familyName"))
-                (:email-link            :url      ,(s-prefix "foaf:mbox"))
-                (:phone-link            :url      ,(s-prefix "foaf:phone")))
-  :has-one `((account-group             :via      ,(s-prefix "foaf:member")
-                                        :inverse t
-                                        :as "group")
-             (account                   :via      ,(s-prefix "foaf:account")
+                (:email-link            :url      ,(s-prefix "foaf:mbox")))
+  :has-one `((account                   :via      ,(s-prefix "foaf:account")
                                         :as "account")
-             (identifier                :via      ,(s-prefix "adms:identifier")
-                                        :as "identifier")
-             (organization              :via      ,(s-prefix "org:memberOf")
-                                        :as "organization")
+  :has-many `((membership               :via      ,(s-prefix "org:member")
+                                        :inverse t
+                                        :as "memberships"))
             )
   :on-path "users"
-)
-
-(define-resource identifier ()
-  :class (s-prefix "adms:Identifier")
-  :resource-base (s-url "http://kanselarij.vo.data.gift/id/identificator/")
-  :properties `((:notation            :string   ,(s-prefix "skos:notation")))
-  :on-path "identifiers"
 )
 
 (define-resource account ()
   :class (s-prefix "foaf:OnlineAccount")
   :resource-base (s-url "http://kanselarij.vo.data.gift/id/accounts/")
   :properties `((:provider    :uri ,(s-prefix "foaf:accountServiceHomepage"))
-                (:vo-id       :string ,(s-prefix "dct:identifier")))
+                (:accountName :string ,(s-prefix "foaf:accountName")))
   :has-one `((user            :via ,(s-prefix "foaf:account")
                               :inverse t
                               :as "user"))
   :on-path "accounts"
 )
 
-(define-resource account-group ()
-  :class (s-prefix "foaf:Group")
-  :resource-base (s-url "http://kanselarij.vo.data.gift/id/account-groups/")
-  :properties `((:name  :via ,(s-prefix "foaf:name")))
-  :has-many `((user     :via ,(s-prefix "foaf:member")
-                        :as "users"))
-  :on-path "account-groups"
+(define-resource membership ()
+  :class (s-prefix "org:Membership")
+  :resource-base (s-url "http://kanselarij.vo.data.gift/id/lidmaatchap/")
+  :properties ()
+  :has-one `((user        :via ,(s-prefix "org:member")
+                          :as "member")
+            (organization :via ,(s-prefix "org:organization")
+                          :as "organization"))
+  :on-path "memberships"
+)
+
+(define-resource organization ()
+  :class (s-prefix "foaf:Organization")
+  :resource-base (s-url "http://kanselarij.vo.data.gift/id/organisatie/")
+  :properties ((:name :string ,(s-prefix "skos:prefLabel")))
+  :has-many `((membership :via ,(s-prefix "org:organization")
+                          :as "memberships"))
 )

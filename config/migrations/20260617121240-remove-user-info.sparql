@@ -1,0 +1,15 @@
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+
+DELETE {
+    GRAPH <http://mu.semte.ch/graphs/public> {
+		?group ?gp ?go .
+		?person ?pp ?po .
+		?account ?ap ?ao .
+	}
+}  WHERE {
+    GRAPH <http://mu.semte.ch/graphs/public> {
+		?group a foaf:Group ; ?gp ?go .
+		?person a foaf:Person ; ?pp ?po .
+		?account a foaf:OnlineAccount ; ?ap ?ao .
+	}
+}
