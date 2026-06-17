@@ -78,13 +78,6 @@
   ;; ideally only writes on "http://xmlns.com/foaf/0.1/member" predicate
   ("foaf:Group" -> _))
 
-(define-graph admin-user-info ("http://mu.semte.ch/graphs/account-info")
-  ("foaf:Person" -> _)
-  ("foaf:OnlineAccount" -> _)
-  ("adms:Identifier" -> _)
-  ;; ideally only writes on "http://xmlns.com/foaf/0.1/member" predicate
-  ("foaf:Group" -> _))
-
 (define-graph authenticated-users-case ("http://mu.semte.ch/graphs/authenticated-users")
     ("oc:Case" -> _))
 
@@ -94,12 +87,6 @@
   ("foaf:Document" -> _)
   ("ext:DocumentVersie" -> _)
   ("nfo:FileDataObject" -> _))
-(define-graph kanselarij-account-info ("http://mu.semte.ch/graphs/organizations/kanselarij")
-  ("foaf:Person" -> _)
-  ("foaf:OnlineAccount" -> _)
-  ("adms:Identifier" -> _)
-  ;; ideally only writes on "http://xmlns.com/foaf/0.1/member" predicate
-  ("foaf:Group" -> _))
 
 (define-graph minister-agenda ("http://mu.semte.ch/graphs/organizations/minister")
   ("oc:Meeting" -> _)
@@ -107,12 +94,6 @@
   ("foaf:Document" -> _)
   ("ext:DocumentVersie" -> _)
   ("nfo:FileDataObject" -> _))
-(define-graph minister-account-info ("http://mu.semte.ch/graphs/organizations/minister")
-  ("foaf:Person" -> _)
-  ("foaf:OnlineAccount" -> _)
-  ("adms:Identifier" -> _)
-  ;; ideally only writes on "http://xmlns.com/foaf/0.1/member" predicate
-  ("foaf:Group" -> _))
 
 (define-graph kabinet-agenda ("http://mu.semte.ch/graphs/organizations/kabinet")
   ("oc:Meeting" -> _)
@@ -120,19 +101,6 @@
   ("foaf:Document" -> _)
   ("ext:DocumentVersie" -> _)
   ("nfo:FileDataObject" -> _))
-(define-graph kabinet-account-info ("http://mu.semte.ch/graphs/organizations/kabinet")
-  ("foaf:Person" -> _)
-  ("foaf:OnlineAccount" -> _)
-  ("adms:Identifier" -> _)
-  ;; ideally only writes on "http://xmlns.com/foaf/0.1/member" predicate
-  ("foaf:Group" -> _))
-
-(define-graph adviesverlener-account-info ("http://mu.semte.ch/graphs/organizations/adviesverlener")
-  ("foaf:Person" -> _)
-  ("foaf:OnlineAccount" -> _)
-  ("adms:Identifier" -> _)
-  ;; ideally only writes on "http://xmlns.com/foaf/0.1/member" predicate
-  ("foaf:Group" -> _))
 
 (define-graph administratie-agenda ("http://mu.semte.ch/graphs/organizations/administratie")
   ("oc:Meeting" -> _)
@@ -140,27 +108,6 @@
   ("foaf:Document" -> _)
   ("ext:DocumentVersie" -> _)
   ("nfo:FileDataObject" -> _))
-
-(define-graph administratie-account-info ("http://mu.semte.ch/graphs/organizations/administratie")
-  ("foaf:Person" -> _)
-  ("foaf:OnlineAccount" -> _)
-  ("adms:Identifier" -> _)
-  ;; ideally only writes on "http://xmlns.com/foaf/0.1/member" predicate
-  ("foaf:Group" -> _))
-
-(define-graph parlement-account-info ("http://mu.semte.ch/graphs/organizations/parlement")
-  ("foaf:Person" -> _)
-  ("foaf:OnlineAccount" -> _)
-  ("adms:Identifier" -> _)
-  ;; ideally only writes on "http://xmlns.com/foaf/0.1/member" predicate
-  ("foaf:Group" -> _))
-
-(define-graph user-account-info ("http://mu.semte.ch/graphs/organizations/user")
-  ("foaf:Person" -> _)
-  ("foaf:OnlineAccount" -> _)
-  ("adms:Identifier" -> _)
-  ;; ideally only writes on "http://xmlns.com/foaf/0.1/member" predicate
-  ("foaf:Group" -> _))
 
 (grant (read)
   :to-graph public
@@ -174,18 +121,10 @@
   :for-allowed-group "admin")
 
 (grant (read write)
-  :to-graph (
-    kanselarij-agenda
-    kanselarij-account-info
-    authenticated-users-case)
-  :for-allowed-group "kanselarij")
+  :to-graph  :for-allowed-group "kanselarij")
 
 (grant (read)
-  :to-graph (
-    minister-agenda
-    minister-account-info
-    authenticated-users-case)
-  :for-allowed-group "minister")
+  :to-graph  :for-allowed-group "minister")
 
 (grant (read)
   :to-graph (
@@ -194,14 +133,10 @@
   :for-allowed-group "kabinet-adviesverlener")
 
 (grant (read)
-  :to-graph (
-    kabinet-account-info)
-  :for-allowed-group "kabinet")
+  :to-graph  :for-allowed-group "kabinet")
 
 (grant (read)
-  :to-graph (
-    adviesverlener-account-info)
-  :for-allowed-group "adviesverlener")
+  :to-graph  :for-allowed-group "adviesverlener")
 
 (grant (read)
   :to-graph (
@@ -210,17 +145,11 @@
   :for-allowed-group "administratie-parlement")
 
 (grant (read)
-  :to-graph (
-    administratie-account-info)
-  :for-allowed-group "administratie")
+  :to-graph  :for-allowed-group "administratie")
 
 (grant (read)
-  :to-graph (
-    parlement-account-info)
-  :for-allowed-group "parlement")
+  :to-graph  :for-allowed-group "parlement")
 
 (grant (read)
-  :to-graph (
-    user-account-info)
-  :for-allowed-group "user")
+  :to-graph  :for-allowed-group "user")
 
