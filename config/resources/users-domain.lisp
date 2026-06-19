@@ -17,7 +17,7 @@
   :class (s-prefix "foaf:OnlineAccount")
   :resource-base (s-url "http://kanselarij.vo.data.gift/id/accounts/")
   :properties `((:provider    :uri ,(s-prefix "foaf:accountServiceHomepage"))
-                (:accountName :string ,(s-prefix "foaf:accountName")))
+                (:account-name :string ,(s-prefix "foaf:accountName")))
   :has-one `((user            :via ,(s-prefix "foaf:account")
                               :inverse t
                               :as "user"))

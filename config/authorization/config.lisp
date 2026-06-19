@@ -74,7 +74,7 @@
   ;; Account info types
   ("foaf:Person" -> _)
   ("foaf:OnlineAccount" -> _)
-  ("adms:Identifier" -> _)
+  ("foaf:Organization" -> _)
   ;; ideally only writes on "http://xmlns.com/foaf/0.1/member" predicate
   ("foaf:Group" -> _))
 
@@ -121,10 +121,14 @@
   :for-allowed-group "admin")
 
 (grant (read write)
-  :to-graph  :for-allowed-group "kanselarij")
+  :to-graph (
+    kanselarij-agenda
+  ) :for-allowed-group "kanselarij")
 
 (grant (read)
-  :to-graph  :for-allowed-group "minister")
+  :to-graph (
+    minister-agenda
+  ) :for-allowed-group "minister")
 
 (grant (read)
   :to-graph (
@@ -133,10 +137,13 @@
   :for-allowed-group "kabinet-adviesverlener")
 
 (grant (read)
-  :to-graph  :for-allowed-group "kabinet")
+  :to-graph (
+    kabinet-agenda
+  ) :for-allowed-group "kabinet")
 
 (grant (read)
-  :to-graph  :for-allowed-group "adviesverlener")
+  :to-graph (
+  ) :for-allowed-group "adviesverlener")
 
 (grant (read)
   :to-graph (
@@ -144,12 +151,12 @@
     authenticated-users-case)
   :for-allowed-group "administratie-parlement")
 
-(grant (read)
-  :to-graph  :for-allowed-group "administratie")
+; (grant (read)
+;   :to-graph  :for-allowed-group "administratie")
 
-(grant (read)
-  :to-graph  :for-allowed-group "parlement")
+; (grant (read)
+;   :to-graph  :for-allowed-group "parlement")
 
-(grant (read)
-  :to-graph  :for-allowed-group "user")
+; (grant (read)
+;   :to-graph  :for-allowed-group "user")
 

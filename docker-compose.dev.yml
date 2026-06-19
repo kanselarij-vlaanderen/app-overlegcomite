@@ -39,7 +39,7 @@ services:
     entrypoint: echo "Service disabled"
     restart: "no"
   mocklogin:
-    image: kanselarij/mock-login-service:1.0.0
+    image: kanselarij/mock-login-service:2.4.0
     volumes:
       - ./config/mocklogin:/config
     logging: *default-logging
