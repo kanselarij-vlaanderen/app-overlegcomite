@@ -4,6 +4,7 @@ x-logging:
   options:
     max-size: "10m"
     max-file: "3"
+
 services:
   frontend:
     image: kanselarij/frontend-overlegcomite:1.8.2
@@ -27,23 +28,7 @@ services:
     restart: always
     labels:
       - "logging=true"
-  login:
-    image: kanselarij/acmidm-login-service:1.3.1
-    environment:
-      MU_APPLICATION_AUTH_ALLOW_NO_ROLE_CLAIM: "true"
-      MU_APPLICATION_AUTH_DEFAULT_GROUP_URI: "http://data.kanselarij.vlaanderen.be/id/group/user"
-      MU_APPLICATION_AUTH_USERID_CLAIM: "vo_id"
-      DEBUG_LOG_TOKENSETS: "true"
-      LOG_SINK_URL: "http://sink"
-      MU_APPLICATION_AUTH_ROLE_CLAIM: "dkb_overlegcomite_rol_3d"
-      MU_APPLICATION_RESOURCE_BASE_URI: "http://kanselarij.vo.data.gift/"
-      REQUEST_TIMEOUT: 5000
-      USER_GRAPH_URI: "http://mu.semte.ch/graphs/account-info"
-    logging: *default-logging
-    restart: always
-    labels:
-      - "logging=true"
-  migration:
+  migrations:
     image: semtech/mu-migrations-service:0.9.0
     volumes:
       - ./config/migrations:/data/migrations
@@ -70,6 +55,38 @@ services:
     volumes:
       - ./data/db:/data
       - ./config/db/virtuoso.ini:/data/virtuoso.ini
+    logging: *default-logging
+    restart: always
+    labels:
+      - "logging=true"
+  delta-notifier:
+    image: semtech/mu-delta-notifier:0.4.0
+    volumes:
+        - ./config/delta:/config
+    logging: *default-logging
+    restart: always
+    labels:
+      - "logging=true"
+  login:
+    image: kanselarij/acmidm-login-service:1.3.1
+    environment:
+      MU_APPLICATION_AUTH_ALLOW_NO_ROLE_CLAIM: "true"
+      MU_APPLICATION_AUTH_DEFAULT_GROUP_URI: "http://data.kanselarij.vlaanderen.be/id/group/user"
+      MU_APPLICATION_AUTH_USERID_CLAIM: "vo_id"
+      DEBUG_LOG_TOKENSETS: "true"
+      LOG_SINK_URL: "http://sink"
+      MU_APPLICATION_AUTH_ROLE_CLAIM: "dkb_overlegcomite_rol_3d"
+      MU_APPLICATION_RESOURCE_BASE_URI: "http://kanselarij.vo.data.gift/"
+      REQUEST_TIMEOUT: 5000
+      USER_GRAPH_URI: "http://mu.semte.ch/graphs/account-info"
+    logging: *default-logging
+    restart: always
+    labels:
+      - "logging=true"
+  cache:
+    image: semtech/mu-cache:2.1.0
+    links:
+      - resource:backend
     logging: *default-logging
     restart: always
     labels:
@@ -123,22 +140,6 @@ services:
       - "logging=true"
   tika:
     image: semtech/mu-search-tika-backend:1.0.0
-    logging: *default-logging
-    restart: always
-    labels:
-      - "logging=true"
-  delta-notifier:
-    image: semtech/mu-delta-notifier:0.4.0
-    volumes:
-        - ./config/delta:/config
-    logging: *default-logging
-    restart: always
-    labels:
-      - "logging=true"
-  cache:
-    image: semtech/mu-cache:2.1.0
-    links:
-      - resource:backend
     logging: *default-logging
     restart: always
     labels:

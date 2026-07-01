@@ -4,37 +4,26 @@ x-logging:
   options:
     max-size: "10m"
     max-file: "3"
+
 services:
+  frontend:
+    restart: "no"
   identifier:
     ports:
       - 80:80
+    restart: "no"
+  dispatcher:
+    restart: "no"
+  migrations:
+    restart: "no"
   database:
-    environment:
-      LOG_OUTGOING_SPARQL_QUERIES: "true"
-      INSPECT_OUTGOING_SPARQL_QUERIES: "true"
-      LOG_INCOMING_SPARQL_QUERIES: "true"
-      INSPECT_INCOMING_SPARQL_QUERIES: "true"
-      LOG_ACCESS_RIGHTS: "true"
-      INSPECT_ACCESS_RIGHTS_PROCESSING: "true"
-      LOG_DELTA_MESSAGES: "true"
-      LOG_DELTA_CLIENT_COMMUNICATION: "true"
-      LOG_TEMPLATE_MATCHER_PERFORMANCE: "false"
+    restart: "no"
   triplestore:
     ports:
       - 8890:8890
-  kibana:
-    image: docker.elastic.co/kibana/kibana:7.2.0
-    volumes:
-      - ./config/search:/search
-    ports:
-      - 127.0.0.1:5601:5601
-    userns_mode: "host"
-    environment:
-      ELASTICSEARCH_URL: "http://elasticsearch:9200"
     restart: "no"
-  elasticsearch:
-    ports:
-      - 127.0.0.1:9200:9200
+  delta-notifier:
+    restart: "no"
   login:
     entrypoint: echo "Service disabled"
     restart: "no"
@@ -43,10 +32,39 @@ services:
     volumes:
       - ./config/mocklogin:/config
     logging: *default-logging
+  resource:
+    restart: "no"
+  file:
+    restart: "no"
+  range-file:
+    restart: "no"
+  search:
+    restart: "no"
+    environment:
+      JRUBY_OPTIONS: "-J-Xmx2g"
+      NUMBER_OF_THREADS: "2"
+  elasticsearch:
+    restart: "no"
+  tika:
+    restart: "no"
   distribution:
     environment:
       LOG_SPARQL_ALL: "true"
       DEBUG_AUTH_HEADERS: "true"
+    restart: "no"
+  sink:
+    restart: "no"
   user-info-distribution:
     ports:
       - 127.0.0.1:8001:80 # For accessing maintenance endpoints
+    restart: "no"
+  kibana:
+    image: docker.elastic.co/kibana/kibana:9.3.3
+    depends_on:
+      - elasticsearch
+    ports:
+      - 127.0.0.1:5601:5601
+    environment:
+      ELASTICSEARCH_HOSTS: '["http://elasticsearch:9200"]'
+    logging: *default-logging
+    restart: "no"
