@@ -127,7 +127,7 @@ services:
     restart: always
     labels:
       - "logging=true"
-  deltanotifier:
+  delta-notifier:
     image: semtech/mu-delta-notifier:0.4.0
     volumes:
         - ./config/delta:/config
