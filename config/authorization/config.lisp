@@ -3,16 +3,15 @@
 (in-package :client)
 (setf *backend* "http://triplestore:8890/sparql")
 
-(setf *log-sparql-query-roundtrip* t)
+(setf *log-sparql-query-roundtrip* nil)
 (in-package :server)
-(setf *log-incoming-requests-p* t)
+(setf *log-incoming-requests-p* nil)
 
 ;;;;;;;;;;;;;;;;;;;
 ;;; delta messenger
 (in-package :delta-messenger)
-
-(add-delta-logger)
 (add-delta-messenger "http://delta-notifier/")
+(setf *log-delta-messenger-message-bus-processing* nil)
 
 ;;;;;;;;;;;;;;;;;
 ;;; access rights
