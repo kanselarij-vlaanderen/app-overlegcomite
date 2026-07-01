@@ -17,3 +17,4 @@ config/migrations/*
 # Search
 config/search/*.store
 /data/elasticsearch/*
+/data/tika/*

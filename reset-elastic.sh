@@ -3,6 +3,8 @@ echo "warning this will run queries on the triplestore and delete containers, yo
 sleep 3
 docker compose rm -fs elasticsearch search
 sudo rm -rf data/elasticsearch/
+mkdir data/elasticsearch/
+chmod 777 data/elasticsearch/
 docker compose exec -T triplestore isql-v <<EOF
 SPARQL DELETE WHERE {   GRAPH <http://mu.semte.ch/authorization> {     ?s ?p ?o.   } };
 exec('checkpoint');
