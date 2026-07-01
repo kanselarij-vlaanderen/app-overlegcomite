@@ -39,7 +39,7 @@
 
 (supply-allowed-group "public")
 
-(supply-allowed-group "admin"
+(supply-allowed-group "admin-rw"
   :query (access-by-role-query "<http://data.kanselarij.vlaanderen.be/id/group/admin>"))
 (supply-allowed-group "kanselarij"
   :query (access-by-role-query "<http://data.kanselarij.vlaanderen.be/id/group/kanselarij>"))
@@ -171,7 +171,7 @@
     admin-user-info
     authenticated-users-case
     kanselarij-agenda)
-  :for-allowed-group "admin")
+  :for-allowed-group "admin-rw")
 
 (grant (read write)
   :to-graph (
@@ -223,4 +223,3 @@
   :to-graph (
     user-account-info)
   :for-allowed-group "user")
-
