@@ -6,7 +6,6 @@
                                         :as "agenda-items")
               (document                 :via      ,(s-prefix "oc:documents")
                                         :as "documents"))
-                                        
   :resource-base (s-url "http://kanselarij.vo.data.gift/id/oc-zittingen/")
   :features '(include-uri)
   :on-path "meetings")
