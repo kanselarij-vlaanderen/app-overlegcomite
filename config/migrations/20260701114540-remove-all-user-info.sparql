@@ -1,0 +1,49 @@
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX adms: <http://www.w3.org/ns/adms#>
+PREFIX org: <http://www.w3.org/ns/org#>
+
+DELETE {
+  GRAPH ?g {
+    ?group foaf:member ?member .
+  }
+} WHERE {
+  GRAPH <http://mu.semte.ch/graphs/public> {
+    ?group a foaf:Group .
+  }
+  GRAPH ?g {
+    ?group foaf:member ?member .
+  }
+}
+
+;
+
+DELETE {
+  GRAPH ?g {
+    ?s ?p ?o .
+  }
+} WHERE {
+  GRAPH ?g {
+    ?s a ?type ; ?p ?o .
+  }
+  VALUES ?g {
+    <http://mu.semte.ch/graphs/public>
+    <http://mu.semte.ch/graphs/organizations/kanselarij>
+    <http://mu.semte.ch/graphs/organizations/minister>
+    <http://mu.semte.ch/graphs/organizations/kabinet>
+    <http://mu.semte.ch/graphs/organizations/administratie>
+  }
+  VALUES ?type {
+    foaf:Person
+    foaf:OnlineAccount
+    adms:Identifier
+    org:Organization
+  }
+}
+
+;
+
+DROP SILENT GRAPH <http://mu.semte.ch/graphs/account-info> ;
+DROP SILENT GRAPH <http://mu.semte.ch/graphs/rightless-user> ;
+DROP SILENT GRAPH <http://mu.semte.ch/graphs/admins> ;
+DROP SILENT GRAPH <http://mu.semte.ch/graphs/organizations/adviesverlener> ;
+DROP SILENT GRAPH <http://mu.semte.ch/graphs/organizations/parlement> ;

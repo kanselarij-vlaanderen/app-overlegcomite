@@ -153,12 +153,6 @@ services:
     restart: always
     labels:
       - "logging=true"
-  user-info-distribution:
-    image: kanselarij/user-info-distributor:0.1.1
-    logging: *default-logging
-    restart: always
-    labels:
-      - "logging=true"
   sink:
     image: lblod/sink-service:1.0.0
     logging: *default-logging

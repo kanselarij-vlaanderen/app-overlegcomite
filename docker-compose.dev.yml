@@ -54,10 +54,6 @@ services:
     restart: "no"
   sink:
     restart: "no"
-  user-info-distribution:
-    ports:
-      - 127.0.0.1:8001:80 # For accessing maintenance endpoints
-    restart: "no"
   kibana:
     image: docker.elastic.co/kibana/kibana:9.3.3
     depends_on:
