@@ -50,3 +50,4 @@
 (add-prefix "prov" "http://www.w3.org/ns/prov#")
 (add-prefix "skos" "http://www.w3.org/2004/02/skos/core#")
 (add-prefix "adms" "http://www.w3.org/ns/adms#")
+(add-prefix "schema" "http://schema.org/")

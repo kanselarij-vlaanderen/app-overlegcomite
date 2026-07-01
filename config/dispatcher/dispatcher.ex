@@ -1,39 +1,47 @@
 defmodule Dispatcher do
   use Matcher
 
-  define_accept_types []
+  define_accept_types [
+    json: [ "application/json", "application/vnd.api+json" ],
+    html: [ "text/html", "application/xhtml+html"],
+    css: [ "text/css" ],
+    any: [ "*/*" ],
+  ]
 
+  @json_service %{ accept: [ :json ] }
   @any %{}
 
-  match "/mock/sessions/*path", @any do
+  ### Authentication
+
+  match "/mock/sessions/*path", @json_service do
     Proxy.forward conn, path, "http://mocklogin/sessions/"
   end
-  
-  match "/sessions/*path", @any do
+
+  match "/sessions/*path", @json_service do
     Proxy.forward conn, path, "http://login/sessions/"
   end
-  
-  
-  match "/users/*path", @any do
+
+  match "/users/*path", @json_service do
     Proxy.forward conn, path, "http://cache/users/"
   end
 
-  match "/identifiers/*path", @any do
-    Proxy.forward conn, path, "http://cache/identifiers/"
-  end
-
-  match "/accounts/*path", @any do
+  get "/accounts/*path", @json_service do
     Proxy.forward conn, path, "http://cache/accounts/"
   end
 
-  match "/account-groups/*path", @any do
-    Proxy.forward conn, path, "http://cache/account-groups/"
+  match "/user-organizations/*path", @json_service do
+    Proxy.forward conn, path, "http://cache/user-organizations/"
   end
 
-  match "/organizations/*path", @any do
-    Proxy.forward conn, path, "http://cache/organizations/"
+  match "/memberships/*path", @json_service do
+    Proxy.forward conn, path, "http://cache/memberships/"
   end
 
+  get "/login-activities/*path", @json_service do
+    Proxy.forward conn, path, "http://cache/login-activities/"
+  end
+
+  ### Files
 
   get "/files/:id/download", @any do
     Proxy.forward conn, [], "http://range-file/files/" <> id <> "/download/"
@@ -51,6 +59,7 @@ defmodule Dispatcher do
     Proxy.forward conn, path, "http://cache/files/"
   end
 
+  ### Regular resources and cache
 
   match "/documents/*path", @any do
     Proxy.forward conn, path, "http://cache/documents/"
@@ -60,12 +69,15 @@ defmodule Dispatcher do
     Proxy.forward conn, path, "http://cache/document-versions/"
   end
 
-  match "/document-types/*path", @any do
+  get "/document-types/*path", @any do
     Proxy.forward conn, path, "http://cache/document-types/"
   end
 
+  get "/roles/*path", @json_service do
+    Proxy.forward conn, path, "http://cache/roles/"
+  end
 
-  match "/access-levels/*path", @any do
+  get "/access-levels/*path", @any do
     Proxy.forward conn, path, "http://cache/access-levels/"
   end
 
@@ -78,7 +90,7 @@ defmodule Dispatcher do
     Proxy.forward conn, [], "http://distribution/meetings/" <> id <> "/notifications/distribute/"
   end
 
-  
+
   match "/meetings/*path", @any do
     Proxy.forward conn, path, "http://cache/meetings/"
   end

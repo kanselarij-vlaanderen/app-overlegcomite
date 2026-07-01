@@ -1,0 +1,71 @@
+@prefix org: <http://www.w3.org/ns/org#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix mu: <http://mu.semte.ch/vocabularies/core/> .
+@prefix schema: <http://schema.org/> .
+
+<http://kanselarij.vo.data.gift/id/gebruikersrollen/a45c71ac-710e-4497-b37f-12c7f3147459> a skos:ConceptScheme ;
+    mu:uuid "a45c71ac-710e-4497-b37f-12c7f3147459" ;
+    skos:prefLabel "Gebruikersrollen"@nl .
+
+<http://kanselarij.vo.data.gift/id/gebruikersrollen/d02621f2-e4cf-4de0-9484-ce8eb69a7aea>
+  a org:Role ;
+  mu:uuid "d02621f2-e4cf-4de0-9484-ce8eb69a7aea" ;
+  skos:prefLabel "Admin" ;
+  skos:notation "OverlegcomiteGebruiker-admin" ;
+  skos:definition "Beheerder van de Overlegcomité applicatie" ;
+  schema:position 1 ;
+  skos:inScheme <http://kanselarij.vo.data.gift/id/gebruikersrollen/a45c71ac-710e-4497-b37f-12c7f3147459> .
+
+<http://kanselarij.vo.data.gift/id/gebruikersrollen/67eda907-66db-4d68-b913-b5f2b857164a>
+  a org:Role ;
+  mu:uuid "67eda907-66db-4d68-b913-b5f2b857164a" ;
+  skos:prefLabel "Secretarie" ;
+  skos:notation "OverlegcomiteGebruiker-secretarie" ;
+  skos:definition "Medewerker team secretarie" ;
+  schema:position 2 ;
+  skos:inScheme <http://kanselarij.vo.data.gift/id/gebruikersrollen/a45c71ac-710e-4497-b37f-12c7f3147459> .
+
+<http://kanselarij.vo.data.gift/id/gebruikersrollen/49769e61-a5af-47ae-a207-df69b4b178bc>
+  a org:Role ;
+  mu:uuid "49769e61-a5af-47ae-a207-df69b4b178bc" ;
+  skos:prefLabel "Minister" ;
+  skos:notation "OverlegcomiteGebruiker-minister" ;
+  skos:definition "Minister of Kabinetchef" ;
+  schema:position 3 ;
+  skos:inScheme <http://kanselarij.vo.data.gift/id/gebruikersrollen/a45c71ac-710e-4497-b37f-12c7f3147459> .
+
+<http://kanselarij.vo.data.gift/id/gebruikersrollen/95670945-dc7a-4432-949a-41c009447a7d>
+  a org:Role ;
+  mu:uuid "95670945-dc7a-4432-949a-41c009447a7d" ;
+  skos:prefLabel "Kabinet" ;
+  skos:notation "OverlegcomiteGebruiker-kabinet" ;
+  skos:definition "Medewerker van een kabinet" ;
+  schema:position 4 ;
+  skos:inScheme <http://kanselarij.vo.data.gift/id/gebruikersrollen/a45c71ac-710e-4497-b37f-12c7f3147459> .
+
+<http://kanselarij.vo.data.gift/id/gebruikersrollen/1c85c862-ec7e-45e5-bd38-2b2f150e8a43>
+  a org:Role ;
+  mu:uuid "1c85c862-ec7e-45e5-bd38-2b2f150e8a43" ;
+  skos:prefLabel "Adviesverlener" ;
+  skos:notation "OverlegcomiteGebruiker-adviesverlener" ;
+  skos:definition "Medewerker bij een departement of agentschap met een recht stukken te zien op een agenda van een Overlegcomité in functie van een advies" ;
+  schema:position 5 ;
+  skos:inScheme <http://kanselarij.vo.data.gift/id/gebruikersrollen/a45c71ac-710e-4497-b37f-12c7f3147459> .
+
+<http://kanselarij.vo.data.gift/id/gebruikersrollen/f5b1e170-ed56-42fa-b3ac-5358c30a33e9>
+  a org:Role ;
+  mu:uuid "f5b1e170-ed56-42fa-b3ac-5358c30a33e9" ;
+  skos:prefLabel "Intern overheid" ;
+  skos:notation "OverlegcomiteGebruiker-intern_overheid" ;
+  skos:definition "Medewerker bij een departement of agentschap" ;
+  schema:position 6 ;
+  skos:inScheme <http://kanselarij.vo.data.gift/id/gebruikersrollen/a45c71ac-710e-4497-b37f-12c7f3147459> .
+
+<http://kanselarij.vo.data.gift/id/gebruikersrollen/0da9f8ce-0f6f-4086-8db5-53e44bd6215d>
+  a org:Role ;
+  mu:uuid "0da9f8ce-0f6f-4086-8db5-53e44bd6215d" ;
+  skos:prefLabel "Vlaams Parlement" ;
+  skos:notation "OverlegcomiteGebruiker-vlaams_parlement" ;
+  skos:definition "Medewerker bij Vlaams Parlement of volksvertegenwoordiger" ;
+  schema:position 7 ;
+  skos:inScheme <http://kanselarij.vo.data.gift/id/gebruikersrollen/a45c71ac-710e-4497-b37f-12c7f3147459> .

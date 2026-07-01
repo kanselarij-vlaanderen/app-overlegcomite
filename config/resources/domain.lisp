@@ -20,5 +20,5 @@
 (read-domain-file "document-domain.lisp")
 (read-domain-file "mandate-domain.lisp")
 (read-domain-file "oc-domain.lisp")
-(read-domain-file "users-domain.lisp")
-(read-domain-file "organisatie-domain.lisp")
+(read-domain-file "users-domain.json")
+(read-domain-file "concept-domain.json")

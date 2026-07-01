@@ -1,4 +1,3 @@
-
 (define-resource government-body ()
   :class (s-prefix "besluit:Bestuursorgaan")
   :properties `((:name :string ,(s-prefix "skos:prefLabel"))
@@ -8,3 +7,12 @@
   :resource-base (s-url "http://kanselarij.vo.data.gift/id/bestuursorganen/")
   :features '(include-uri)
   :on-path "government-bodies")
+
+(define-resource role ()
+  :class (s-prefix "org:Role")
+  :properties `((:label        :string ,(s-prefix "skos:prefLabel"))
+                (:concept-scheme :url ,(s-prefix "skos:inScheme"))
+                (:position          :integer ,(s-prefix "schema:position")))
+  :resource-base (s-url "http://themis.vlaanderen.be/id/bestuursfunctie/")
+  :features '(include-uri)
+  :on-path "roles")

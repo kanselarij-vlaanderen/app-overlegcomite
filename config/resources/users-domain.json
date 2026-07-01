@@ -1,0 +1,167 @@
+{
+  "version": "0.1",
+  "prefixes": {
+    "ext": "http://mu.semte.ch/vocabularies/ext/",
+    "prov": "http://www.w3.org/ns/prov#",
+    "foaf": "http://xmlns.com/foaf/0.1/",
+    "org": "http://www.w3.org/ns/org#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "dct": "http://purl.org/dc/terms/",
+    "adms": "http://www.w3.org/ns/adms#"
+  },
+  "resources": {
+    "users":  {
+      "name": "user",
+      "class": "foaf:Person",
+      "attributes": {
+        "first-name": {
+          "type": "string",
+          "predicate": "foaf:firstName"
+        },
+        "last-name": {
+          "type": "string",
+          "predicate": "foaf:familyName"
+        },
+        "email": {
+          "type": "url",
+          "predicate": "foaf:mbox"
+        },
+        "identifier": {
+          "type": "string",
+          "predicate": "dct:identifier"
+        },
+        "created": {
+          "type": "datetime",
+          "predicate": "dct:created"
+        }
+      },
+      "relationships": {
+        "account": {
+          "predicate": "foaf:account",
+          "target": "account",
+          "cardinality": "one"
+        },
+        "memberships": {
+          "predicate": "org:member",
+          "target": "membership",
+          "cardinality": "many",
+          "inverse": true
+        },
+        "status": {
+          "predicate": "adms:status",
+          "target": "concept",
+          "cardinality": "one"
+        },
+        "login-activity": {
+          "predicate": "prov:wasAssociatedWith",
+          "inverse": true,
+          "target": "login-activity",
+          "cardinality": "one",
+          "_comment": "Reference to the most recent login activity only"
+        }
+      },
+      "features": ["include-uri"],
+      "new-resource-base": "http://kanselarij.vo.data.gift/id/gebruikers/"
+    },
+    "accounts":  {
+      "name": "account",
+      "class": "foaf:OnlineAccount",
+      "attributes": {
+        "provider": {
+          "type": "url",
+          "predicate": "foaf:accountServiceHomepage"
+        },
+        "name": {
+          "type": "string",
+          "predicate": "foaf:accountName"
+        }
+      },
+      "relationships": {
+        "user": {
+          "predicate": "foaf:account",
+          "target": "user",
+          "cardinality": "one",
+          "inverse": true
+        }
+      },
+      "features": ["include-uri"],
+      "new-resource-base": "http://kanselarij.vo.data.gift/id/accounts/"
+    },
+    "user-organizations":  {
+      "name": "user-organization",
+      "class": "foaf:Organization",
+      "attributes": {
+        "name": {
+          "type": "string",
+          "predicate": "skos:prefLabel"
+        },
+        "identifier": {
+          "type": "string",
+          "predicate": "org:identifier"
+        }
+      },
+      "relationships": {
+        "memberships": {
+          "predicate": "org:organization",
+          "target": "membership",
+          "cardinality": "many",
+          "inverse": true
+        },
+        "status": {
+          "predicate": "adms:status",
+          "target": "concept",
+          "cardinality": "one"
+        }
+      },
+      "features": ["include-uri"],
+      "new-resource-base": "http://kanselarij.vo.data.gift/id/organisaties/"
+    },
+    "memberships":  {
+      "name": "membership",
+      "class": "org:Membership",
+      "relationships": {
+        "user": {
+          "predicate": "org:member",
+          "target": "user",
+          "cardinality": "one"
+        },
+        "role": {
+          "predicate": "org:role",
+          "target": "role",
+          "cardinality": "one"
+        },
+        "organization": {
+          "predicate": "org:organization",
+          "target": "user-organization",
+          "cardinality": "one"
+        },
+        "status": {
+          "predicate": "adms:status",
+          "target": "concept",
+          "cardinality": "one"
+        }
+      },
+      "features": ["include-uri"],
+      "new-resource-base": "http://kanselarij.vo.data.gift/id/lidmaatschappen/"
+    },
+    "login-activities": {
+      "name": "login-activity",
+      "class": "ext:LoginActivity",
+      "attributes": {
+        "start-date": {
+          "type": "datetime",
+          "predicate": "prov:startedAtTime"
+        }
+      },
+      "relationships": {
+        "user": {
+          "predicate": "prov:wasAssociatedWith",
+          "target": "user",
+          "cardinality": "one"
+        }
+      },
+      "features": ["include-uri"],
+      "new-resource-base": "http://kanselarij.vo.data.gift/id/aanmeldingsactiviteiten/"
+    }
+  }
+}
