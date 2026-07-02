@@ -14,7 +14,7 @@ defmodule Dispatcher do
   ### Authentication
 
   match "/mock/sessions/*path", @json_service do
-    Proxy.forward conn, path, "http://mocklogin/sessions/"
+    Proxy.forward conn, path, "http://mock-login/sessions/"
   end
 
   match "/sessions/*path", @json_service do
