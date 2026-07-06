@@ -107,11 +107,14 @@
   ("org:Membership" -> _)
   ("ext:LoginActivity" -> _))
 
+(define-graph authenticated ("http://mu.semte.ch/graphs/authenticated-users")
+  ("oc:Case" -> _))
+
 (supply-allowed-group "authenticated"
   :query (query-for-authenticated))
 
 (grant (read)
-  :to system/users
+  :to (authenticated system/users)
   :for-allowed-group "authenticated")
 
 
@@ -121,13 +124,11 @@
 (supply-allowed-group "admin-rw" ;; oc-distributor service depends on this group name
   :query (query-for-roles *admin-roles*))
 
-(grant (read write)
-  :to system/users
+(grant (write)
+  :to (authenticated system/users)
   :for-allowed-group "admin-rw")
 
-
 (define-graph kanselarij ("http://mu.semte.ch/graphs/organizations/kanselarij")
-  ("oc:Case" -> _)
   ("oc:Meeting" -> _)
   ("oc:AgendaItem" -> _)
   ("foaf:Document" -> _)
@@ -140,10 +141,13 @@
              *admin-roles*
              *secretarie-roles*)))
 
-(grant (read)
+(grant (read write)
   :to kanselarij
   :for-allowed-group "kanselarij")
 
+(grant (write)
+  :to (authenticated)
+  :for-allowed-group "kanselarij")
 
 (define-graph minister ("http://mu.semte.ch/graphs/organizations/minister")
   ("oc:Meeting" -> _)
