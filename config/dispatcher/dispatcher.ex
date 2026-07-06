@@ -8,8 +8,22 @@ defmodule Dispatcher do
     any: [ "*/*" ],
   ]
 
-  @json_service %{ accept: [ :json ] }
-  @any %{}
+  define_layers [ :frontend, :api, :not_found ]
+
+  @frontend %{ accept: [ :any ], layer: :frontend }
+  @json_service %{ accept: [ :json ], layer: :api }
+  @not_found %{ accept: [ :any ], layer: :not_found }
+
+  ### Frontend
+
+  get "/assets/*path", @frontend do
+    Proxy.forward conn, path, "http://frontend/assets/"
+  end
+
+  get "/@appuniversum/*path", @frontend do
+    Proxy.forward conn, path, "http://frontend/@appuniversum/"
+  end
+
 
   ### Authentication
 
@@ -21,7 +35,7 @@ defmodule Dispatcher do
     Proxy.forward conn, path, "http://login/sessions/"
   end
 
-  match "/users/*path", @json_service do
+  get "/users/*path", @json_service do
     Proxy.forward conn, path, "http://cache/users/"
   end
 
@@ -29,11 +43,11 @@ defmodule Dispatcher do
     Proxy.forward conn, path, "http://cache/accounts/"
   end
 
-  match "/user-organizations/*path", @json_service do
+  get "/user-organizations/*path", @json_service do
     Proxy.forward conn, path, "http://cache/user-organizations/"
   end
 
-  match "/memberships/*path", @json_service do
+  get "/memberships/*path", @json_service do
     Proxy.forward conn, path, "http://cache/memberships/"
   end
 
@@ -41,35 +55,71 @@ defmodule Dispatcher do
     Proxy.forward conn, path, "http://cache/login-activities/"
   end
 
+
+  ### Data distribution
+
+  match "/meetings/:id/agenda/distribute", @json_service do
+    Proxy.forward conn, [], "http://distribution/meetings/" <> id <> "/agenda/distribute/"
+  end
+
+  match "/meetings/:id/notifications/distribute", @json_service do
+    Proxy.forward conn, [], "http://distribution/meetings/" <> id <> "/notifications/distribute/"
+  end
+
+
+  ### Search
+
+  match "/agendaitems-by-notification/search", @json_service do
+    Proxy.forward conn, [], "http://search/agendaitems-by-notification/search/"
+  end
+
+  match "/agendaitems-by-documents/search", @json_service do
+    Proxy.forward conn, [], "http://search/agendaitems-by-documents/search/"
+  end
+
+
   ### Files
 
-  get "/files/:id/download", @any do
+  get "/files/:id/download", %{ accept: [ :any ], layer: :api } do
     Proxy.forward conn, [], "http://range-file/files/" <> id <> "/download/"
   end
 
-  post "/files/*path", @any do
+  post "/files/*path", %{ accept: [ :any ], layer: :api } do
     Proxy.forward conn, path, "http://file/files/"
   end
 
-  delete "/files/*path", @any do
+  delete "/files/*path", %{ accept: [ :any ], layer: :api } do
     Proxy.forward conn, path, "http://file/files/"
   end
 
-  match "/files/*path", @any do
+  match "/files/*path", @json_service do
     Proxy.forward conn, path, "http://cache/files/"
   end
 
+
   ### Regular resources and cache
 
-  match "/documents/*path", @any do
+  match "/documents/*path", @json_service do
     Proxy.forward conn, path, "http://cache/documents/"
   end
 
-  match "/document-versions/*path", @any do
+  match "/document-versions/*path", @json_service do
     Proxy.forward conn, path, "http://cache/document-versions/"
   end
 
-  get "/document-types/*path", @any do
+  match "/meetings/*path", @json_service do
+    Proxy.forward conn, path, "http://cache/meetings/"
+  end
+
+  match "/agendaitems/*path", @json_service do
+    Proxy.forward conn, path, "http://cache/agendaitems/"
+  end
+
+  match "/cases/*path", @json_service do
+    Proxy.forward conn, path, "http://cache/cases/"
+  end
+
+  get "/document-types/*path", @json_service do
     Proxy.forward conn, path, "http://cache/document-types/"
   end
 
@@ -77,48 +127,27 @@ defmodule Dispatcher do
     Proxy.forward conn, path, "http://cache/roles/"
   end
 
-  get "/access-levels/*path", @any do
+  get "/access-levels/*path", @json_service do
     Proxy.forward conn, path, "http://cache/access-levels/"
   end
 
-
-  match "/meetings/:id/agenda/distribute", @any do
-    Proxy.forward conn, [], "http://distribution/meetings/" <> id <> "/agenda/distribute/"
-  end
-
-  match "/meetings/:id/notifications/distribute", @any do
-    Proxy.forward conn, [], "http://distribution/meetings/" <> id <> "/notifications/distribute/"
-  end
-
-
-  match "/meetings/*path", @any do
-    Proxy.forward conn, path, "http://cache/meetings/"
-  end
-
-  match "/agendaitems/*path", @any do
-    Proxy.forward conn, path, "http://cache/agendaitems/"
-  end
-
-  match "/cases/*path", @any do
-    Proxy.forward conn, path, "http://cache/cases/"
-  end
-
-
-  match "/government-bodies/*path", @any do
+  get "/government-bodies/*path", @json_service do
     Proxy.forward conn, path, "http://cache/government-bodies/"
   end
 
 
-  match "/agendaitems-by-notification/search", @any do
-    Proxy.forward conn, [], "http://search/agendaitems-by-notification/search/"
+  ### Fallback
+
+  get "/*_path", %{ layer: :api, accept: %{ html: true } } do
+    Proxy.forward conn, [], "http://frontend/index.html"
   end
 
-  match "/agendaitems-by-documents/search", @any do
-    Proxy.forward conn, [], "http://search/agendaitems-by-documents/search/"
+  match "/*_path", %{ layer: :not_found, accept: %{ json: true } } do
+    send_resp( conn, 404, "{ \"error\": { \"code\": 404, \"message\": \"Route not found.  See config/dispatcher.ex\" } }" )
   end
 
-  match "/_", %{ last_call: true } do
-    send_resp( conn, 404, "Route not found.  See config/dispatcher.ex" )
+  match "/*_path", @not_found do
+    send_resp( conn, 404, "Route not found. See config/dispatcher.ex" )
   end
 
 end
