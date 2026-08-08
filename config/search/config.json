@@ -2,7 +2,7 @@
   "batch_size": 128,
   "max_batches": 0,
   "number_of_threads": 4,
-  "update_wait_interval_minutes": 2,
+  "update_wait_interval_minutes": 0,
   "automatic_index_updates": true,
   "eager_indexing_groups": [
     [ { "name": "public", "variables": [] } ],
@@ -26,8 +26,6 @@
     ]
   ],
   "attachments_path_base": "/data/",
-  "eager_indexing_sparql_query": false,
-  "additive_indexes": false,
   "persist_indexes": true,
   "default_settings": {
     "analysis": {
@@ -36,8 +34,8 @@
           "tokenizer": "standard",
           "filter": [
             "lowercase",
-            "dutchstemmer",
-            "asciifolding"
+            "asciifolding",
+            "dutchstemmer"
           ]
         }
       },
@@ -87,13 +85,7 @@
           "meetingDate": {
             "type": "date"
           },
-          "attachment.content": {
-            "type": "text",
-            "analyzer": "dutchanalyzer",
-            "search_analyzer": "dutchanalyzer",
-            "term_vector": "with_positions_offsets_payloads"
-          },
-          "data.attachment.content": {
+          "data.content": {
             "type": "text",
             "analyzer": "dutchanalyzer",
             "search_analyzer": "dutchanalyzer",
@@ -139,13 +131,7 @@
           "meetingDate": {
             "type": "date"
           },
-          "attachment.content": {
-            "type": "text",
-            "analyzer": "dutchanalyzer",
-            "search_analyzer": "dutchanalyzer",
-            "term_vector": "with_positions_offsets_payloads"
-          },
-          "data.attachment.content": {
+          "data.content": {
             "type": "text",
             "analyzer": "dutchanalyzer",
             "search_analyzer": "dutchanalyzer",
