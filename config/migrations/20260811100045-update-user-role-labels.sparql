@@ -1,0 +1,24 @@
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+DELETE {
+  GRAPH <http://mu.semte.ch/graphs/public> {
+    ?role skos:prefLabel ?label .
+  }
+} WHERE {
+  GRAPH <http://mu.semte.ch/graphs/public> {
+    ?role skos:prefLabel ?label .
+    VALUES ?role {
+      <http://kanselarij.vo.data.gift/id/gebruikersrollen/f5b1e170-ed56-42fa-b3ac-5358c30a33e9>
+      <http://kanselarij.vo.data.gift/id/gebruikersrollen/95670945-dc7a-4432-949a-41c009447a7d>
+    }
+  }
+}
+
+;
+
+INSERT DATA {
+  GRAPH <http://mu.semte.ch/graphs/public> {
+    <http://kanselarij.vo.data.gift/id/gebruikersrollen/f5b1e170-ed56-42fa-b3ac-5358c30a33e9> skos:prefLabel "Overheidsorganisatie" .
+    <http://kanselarij.vo.data.gift/id/gebruikersrollen/95670945-dc7a-4432-949a-41c009447a7d> skos:prefLabel "Kabinetsmedewerker" .
+  }
+}

@@ -1,0 +1,26 @@
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+
+DELETE {
+  GRAPH <http://mu.semte.ch/graphs/public> {
+    ?mock foaf:firstName ?name .
+  }
+} WHERE {
+  GRAPH <http://mu.semte.ch/graphs/public> {
+    ?mock foaf:firstName ?name .
+    VALUES ?mock {
+      <http://kanselarij.vo.data.gift/id/gebruikers/d9c4e81a-9ad9-4571-8a75-51e3a6e7dc63>
+      <http://kanselarij.vo.data.gift/id/gebruikers/b7e2d4f8-3c1a-4b9e-8d7f-2e5a6c3b1d9f>
+      <http://kanselarij.vo.data.gift/id/gebruikers/1b3d5f7a-9c0e-2a4c-6e8f-0b2d4f6a8c0e>
+    }
+  }
+}
+
+;
+
+INSERT DATA {
+  GRAPH <http://mu.semte.ch/graphs/public> {
+    <http://kanselarij.vo.data.gift/id/gebruikers/d9c4e81a-9ad9-4571-8a75-51e3a6e7dc63> foaf:firstName "Kabinetsmedewerker" .
+    <http://kanselarij.vo.data.gift/id/gebruikers/b7e2d4f8-3c1a-4b9e-8d7f-2e5a6c3b1d9f> foaf:firstName "Overheidsorganisatie" .
+    <http://kanselarij.vo.data.gift/id/gebruikers/1b3d5f7a-9c0e-2a4c-6e8f-0b2d4f6a8c0e> foaf:firstName "Vlaams Parlement" .
+  }
+}
