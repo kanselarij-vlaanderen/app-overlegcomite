@@ -35,7 +35,7 @@ defmodule Dispatcher do
     Proxy.forward conn, path, "http://login/sessions/"
   end
 
-  get "/users/*path", @json_service do
+  match "/users/*path", @json_service do
     Proxy.forward conn, path, "http://cache/users/"
   end
 
@@ -98,6 +98,10 @@ defmodule Dispatcher do
 
 
   ### Regular resources and cache
+
+  get "/concepts/*path", @json_service do
+    Proxy.forward conn, path, "http://cache/concepts/"
+  end
 
   match "/documents/*path", @json_service do
     Proxy.forward conn, path, "http://cache/documents/"
