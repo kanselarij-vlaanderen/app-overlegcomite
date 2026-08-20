@@ -70,7 +70,7 @@ services:
     labels:
       - "logging=true"
   login:
-    image: kanselarij/acmidm-login-service:latest
+    image: kanselarij/acmidm-login-service:2.5.0
     environment:
       MU_APPLICATION_AUTH_DISCOVERY_URL: "https://authenticatie-ti.vlaanderen.be/op/.well-known/openid-configuration"
       MU_APPLICATION_AUTH_CLIENT_ID: "b882fde4-56e4-4423-be1a-6b424ea6f7b1"
