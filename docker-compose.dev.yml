@@ -37,8 +37,6 @@ services:
     restart: "no"
   file:
     restart: "no"
-  range-file:
-    restart: "no"
   search:
     restart: "no"
     environment:

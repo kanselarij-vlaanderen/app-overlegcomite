@@ -80,8 +80,8 @@ defmodule Dispatcher do
 
   ### Files
 
-  get "/files/:id/download", %{ accept: [ :any ], layer: :api } do
-    Proxy.forward conn, [], "http://range-file/files/" <> id <> "/download/"
+  get "/files/:id/download", %{ layer: :api } do
+    Proxy.forward conn, [], "http://file/files/" <> id <> "/download"
   end
 
   post "/files/*path", %{ accept: [ :any ], layer: :api } do

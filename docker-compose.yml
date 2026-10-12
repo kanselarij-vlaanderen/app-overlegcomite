@@ -111,14 +111,6 @@ services:
     restart: always
     labels:
       - "logging=true"
-  range-file:
-    image: mikidi/js-file-service:0.1.0
-    volumes:
-      - ./data/files:/share
-    logging: *default-logging
-    restart: always
-    labels:
-      - "logging=true"
   search:
     image: semtech/mu-search:0.12.1
     environment:
