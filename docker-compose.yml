@@ -139,10 +139,7 @@ services:
     labels:
       - "logging=true"
   distribution:
-    image: kanselarij/oc-distributor:0.2.2
-    environment:
-      LOG_SPARQL_ALL: "false"
-      DEBUG_AUTH_HEADERS: "false"
+    image: kanselarij/oc-distributor:0.3.0
     logging: *default-logging
     restart: always
     labels:
